@@ -12,7 +12,7 @@ func _ready():
 
 
 func _on_empezar_pressed():
-	pass # Replace with function body.
+	SceneTransition.change_scene("res://Levels/level_1.tscn")
 
 
 func _on_opciones_pressed():
