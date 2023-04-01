@@ -16,7 +16,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		
 		if (isJumping == true):
-			if Input.is_action_just_pressed("ui_accept"):
+			if Input.is_action_just_pressed("jump"):
 				velocity.y = JUMP_VELOCITY
 				isJumping = false
 		
@@ -31,13 +31,13 @@ func _physics_process(delta):
 			animated_sprite.animation = "run"
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		isJumping = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
 		

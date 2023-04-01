@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3xg016qugpv5"]
+
+[ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Free/Background/Yellow.png" id="1_02img"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_6g7qq"]
+[ext_resource type="Texture2D" uid="uid://8ocpqfska4si" path="res://Art/Free/ui/title.png" id="2_2vbai"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6g7qq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -491.0
+offset_top = -299.0
+offset_right = 1884.0
+offset_bottom = 1094.0
+texture = ExtResource("1_02img")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(390, 338)
+scale = Vector2(5.78906, 4.79688)
+texture = ExtResource("2_2vbai")
+
+[node name="div" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 663.0
+offset_top = 355.0
+offset_right = 1208.0
+offset_bottom = 670.0
+alignment = 1
+
+[node name="Empezar" type="Button" parent="div"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Empezar"
+
+[node name="Opciones" type="Button" parent="div"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Opciones"
+
+[node name="Salir" type="Button" parent="div"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Salir"
+
+[connection signal="pressed" from="div/Empezar" to="." method="_on_empezar_pressed"]
+[connection signal="pressed" from="div/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="div/Salir" to="." method="_on_salir_pressed"]
