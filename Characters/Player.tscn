@@ -1,10 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://dsxul064ovfgj"]
+[gd_scene load_steps=31 format=3]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_hmhi8"]
-[ext_resource type="Texture2D" uid="uid://cpr7nnv28c0b5" path="res://Art/Free/Main Characters/Ninja Frog/Fall (32x32).png" id="2_1oqnx"]
-[ext_resource type="Texture2D" uid="uid://uq411f206rci" path="res://Art/Free/Main Characters/Ninja Frog/Idle (32x32).png" id="2_3jbr0"]
-[ext_resource type="Texture2D" uid="uid://dongebc8igi8f" path="res://Art/Free/Main Characters/Ninja Frog/Jump (32x32).png" id="3_2f5og"]
-[ext_resource type="Texture2D" uid="uid://d2g5ncjj34lwk" path="res://Art/Free/Main Characters/Ninja Frog/Run (32x32).png" id="4_qu8bh"]
+[ext_resource type="Texture2D" uid="uid://cpr7nnv28c0b5" path="res://Art/Main Characters/Ninja Frog/Fall (32x32).png" id="2_1oqnx"]
+[ext_resource type="Texture2D" uid="uid://uq411f206rci" path="res://Art/Main Characters/Ninja Frog/Idle (32x32).png" id="2_3jbr0"]
+[ext_resource type="Texture2D" uid="uid://dongebc8igi8f" path="res://Art/Main Characters/Ninja Frog/Jump (32x32).png" id="3_2f5og"]
+[ext_resource type="Texture2D" uid="uid://d2g5ncjj34lwk" path="res://Art/Main Characters/Ninja Frog/Run (32x32).png" id="4_qu8bh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tf4xt"]
 atlas = ExtResource("2_3jbr0")

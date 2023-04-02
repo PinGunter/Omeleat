@@ -1,20 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwkhhcqbe8j2m"]
+[gd_scene load_steps=6 format=3 uid="uid://bu43dg3ur7kdo"]
 
 [ext_resource type="Script" path="res://UI/scene_transition.gd" id="1_pqwac"]
+[ext_resource type="Texture2D" uid="uid://bpnqvm2phf444" path="res://Art/Background/Blue.png" id="2_5tyha"]
 
 [sub_resource type="Animation" id="Animation_wpftp"]
 resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dissolve_rect:modulate")
+tracks/0/path = NodePath("TextureRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(-2859, -144)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2850, 1292)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_1xaki"]
@@ -22,11 +47,35 @@ resource_name = "dissolve"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dissolve_rect:modulate")
+tracks/0/path = NodePath("TextureRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1272, -250), Vector2(-1272, -250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1270, 1292), Vector2(2850, 1292)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -41,14 +90,13 @@ _data = {
 [node name="scene_transition" type="CanvasLayer"]
 script = ExtResource("1_pqwac")
 
-[node name="dissolve_rect" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0)
-offset_left = -395.0
-offset_top = -303.0
-offset_right = 1735.0
-offset_bottom = 1054.0
-mouse_filter = 2
-color = Color(0.772549, 0.909804, 0.917647, 1)
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -2859.0
+offset_top = -144.0
+offset_right = -9.0
+offset_bottom = 1148.0
+texture = ExtResource("2_5tyha")
+stretch_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

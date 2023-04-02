@@ -1,8 +1,104 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3xg016qugpv5"]
+[gd_scene load_steps=12 format=3 uid="uid://c5j4iogmongui"]
 
-[ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Free/Background/Yellow.png" id="1_02img"]
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_6g7qq"]
-[ext_resource type="Texture2D" uid="uid://8ocpqfska4si" path="res://Art/Free/ui/title.png" id="2_2vbai"]
+[ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="2_whvy8"]
+[ext_resource type="Texture2D" uid="uid://8ocpqfska4si" path="res://Art/ui/title.png" id="3_twn8n"]
+[ext_resource type="Texture2D" uid="uid://h430j0rdylpb" path="res://Art/ui/pointer.png" id="4_001ye"]
+[ext_resource type="PackedScene" uid="uid://dvwevailm7o1m" path="res://UI/cursor.tscn" id="5_xpp32"]
+
+[sub_resource type="Theme" id="Theme_v5gtf"]
+default_font_size = 45
+
+[sub_resource type="Theme" id="Theme_1khvn"]
+default_font_size = 45
+
+[sub_resource type="Theme" id="Theme_vpid8"]
+default_font_size = 45
+
+[sub_resource type="Animation" id="Animation_ctmlb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ptrStart:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(570, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ptrOption:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(610, 500)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ptrQuit:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(610, 600)]
+}
+
+[sub_resource type="Animation" id="Animation_x1w0k"]
+resource_name = "moving"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ptrStart:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(570, 400), Vector2(610, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ptrOption:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(570, 500), Vector2(610, 500)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ptrQuit:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(570, 600), Vector2(610, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_da5th"]
+_data = {
+"RESET": SubResource("Animation_ctmlb"),
+"moving": SubResource("Animation_x1w0k")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,14 +115,14 @@ offset_left = -491.0
 offset_top = -299.0
 offset_right = 1884.0
 offset_bottom = 1094.0
-texture = ExtResource("1_02img")
+texture = ExtResource("2_whvy8")
 stretch_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(390, 338)
 scale = Vector2(5.78906, 4.79688)
-texture = ExtResource("2_2vbai")
+texture = ExtResource("3_twn8n")
 
 [node name="div" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -39,17 +135,48 @@ alignment = 1
 [node name="Empezar" type="Button" parent="div"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_previous = NodePath("../Salir")
+theme = SubResource("Theme_v5gtf")
 text = "Empezar"
 
 [node name="Opciones" type="Button" parent="div"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = SubResource("Theme_1khvn")
 text = "Opciones"
 
 [node name="Salir" type="Button" parent="div"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_next = NodePath("../Empezar")
+theme = SubResource("Theme_vpid8")
 text = "Salir"
+
+[node name="ptrStart" type="Sprite2D" parent="."]
+position = Vector2(570, 400)
+rotation = 1.5708
+scale = Vector2(5, 5)
+texture = ExtResource("4_001ye")
+
+[node name="ptrOption" type="Sprite2D" parent="."]
+position = Vector2(610, 500)
+rotation = 1.5708
+scale = Vector2(5, 5)
+texture = ExtResource("4_001ye")
+
+[node name="ptrQuit" type="Sprite2D" parent="."]
+position = Vector2(610, 600)
+rotation = 1.5708
+scale = Vector2(5, 5)
+texture = ExtResource("4_001ye")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "moving"
+libraries = {
+"": SubResource("AnimationLibrary_da5th")
+}
+
+[node name="Cursor" parent="." instance=ExtResource("5_xpp32")]
 
 [connection signal="pressed" from="div/Empezar" to="." method="_on_empezar_pressed"]
 [connection signal="pressed" from="div/Opciones" to="." method="_on_opciones_pressed"]
