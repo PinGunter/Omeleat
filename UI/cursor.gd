@@ -13,8 +13,9 @@ var mouse_rel = Vector2.ZERO
 func _process(delta):
 
 #	mouse_pos = get_global_mouse_position()
-	var horizontal = Input.get_axis("left", "right")
-	var vertical = Input.get_axis("down", "up")
+	var horizontal = Input.get_axis("left_"+str(player_controller), "right_"+str(player_controller))
+	var vertical = Input.get_axis("down_"+str(player_controller), "up_"+str(player_controller))
+	
 
 #	var vertical = Input.get_joy_axis(player_controller,JOY_AXIS_LEFT_Y)
 #	var horizontal = Input.get_joy_axis(player_controller,JOY_AXIS_LEFT_X)

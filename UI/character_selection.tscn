@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl4vjrgpi22qn"]
+[gd_scene load_steps=8 format=3 uid="uid://dl4vjrgpi22qn"]
 
+[ext_resource type="Script" path="res://UI/character_selection.gd" id="1_44ta4"]
 [ext_resource type="Texture2D" uid="uid://cjw0kanfqrrfp" path="res://Art/Background/Green.png" id="1_p27tr"]
 [ext_resource type="Texture2D" uid="uid://lbgvqb3daqaf" path="res://Art/Menu/Buttons/Back.png" id="2_144sd"]
+[ext_resource type="PackedScene" uid="uid://qb12n5178d87" path="res://UI/cursor_handler.tscn" id="4_yk3gq"]
 
 [sub_resource type="Animation" id="Animation_kjy6b"]
 resource_name = "RESET"
@@ -49,6 +51,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_44ta4")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -72,3 +75,5 @@ offset_right = 15.0
 offset_bottom = 16.0
 scale = Vector2(6, 6)
 texture_normal = ExtResource("2_144sd")
+
+[node name="CursorHandler" parent="." instance=ExtResource("4_yk3gq")]

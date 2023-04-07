@@ -8,8 +8,12 @@ extends Control
 @onready var ptrQuit = $ptrQuit
 
 
+
 func _ready():
 	btnEmpezar.grab_focus()
+
+
+
 
 func _process(delta):
 	ptrStart.visible = false

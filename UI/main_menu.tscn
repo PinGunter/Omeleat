@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="2_whvy8"]
 [ext_resource type="Texture2D" uid="uid://8ocpqfska4si" path="res://Art/ui/title.png" id="3_twn8n"]
 [ext_resource type="Texture2D" uid="uid://h430j0rdylpb" path="res://Art/ui/pointer.png" id="4_001ye"]
-[ext_resource type="PackedScene" uid="uid://dvwevailm7o1m" path="res://UI/cursor.tscn" id="5_xpp32"]
+[ext_resource type="PackedScene" uid="uid://qb12n5178d87" path="res://UI/cursor_handler.tscn" id="5_mu6qs"]
 
 [sub_resource type="Theme" id="Theme_v5gtf"]
 default_font_size = 45
@@ -176,7 +176,7 @@ libraries = {
 "": SubResource("AnimationLibrary_da5th")
 }
 
-[node name="Cursor" parent="." instance=ExtResource("5_xpp32")]
+[node name="CursorHandler" parent="." instance=ExtResource("5_mu6qs")]
 
 [connection signal="pressed" from="div/Empezar" to="." method="_on_empezar_pressed"]
 [connection signal="pressed" from="div/Opciones" to="." method="_on_opciones_pressed"]
