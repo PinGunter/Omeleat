@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddgrrs4erkcpj"
+path="res://.godot/imported/Louie Zong - ringleader raccoon.mp3-f4631579c8f28e029143715412ad1a3d.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/Louie Zong - ringleader raccoon.mp3"
+dest_files=["res://.godot/imported/Louie Zong - ringleader raccoon.mp3-f4631579c8f28e029143715412ad1a3d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

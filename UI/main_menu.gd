@@ -29,7 +29,7 @@ func _process(delta):
 
 
 func _on_empezar_pressed():
-	SceneTransition.change_scene("res://Levels/level_1.tscn")
+	SceneTransition.change_scene("res://Levels/character_selection.tscn")
 
 
 func _on_opciones_pressed():

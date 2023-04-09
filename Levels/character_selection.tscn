@@ -1,0 +1,246 @@
+[gd_scene load_steps=21 format=3 uid="uid://c03gc63tnlnvy"]
+
+[ext_resource type="Script" path="res://Levels/character_selection.gd" id="1_7wty3"]
+[ext_resource type="AudioStream" uid="uid://ddgrrs4erkcpj" path="res://Art/Music/Louie Zong - ringleader raccoon.mp3" id="2_2phbg"]
+[ext_resource type="Texture2D" uid="uid://ci8yijl3y7e57" path="res://Art/Background/Gray.png" id="3_iymno"]
+[ext_resource type="Texture2D" uid="uid://bymel3l4tnw0l" path="res://Art/ui/downard_banner_red.png" id="4_6y6kk"]
+[ext_resource type="Texture2D" uid="uid://bppohejxi2yda" path="res://Art/ui/downard_banner_orange.png" id="5_gvjf2"]
+[ext_resource type="Texture2D" uid="uid://chw7tcefbkwxl" path="res://Art/ui/downard_banner_blue.png" id="6_y61q7"]
+[ext_resource type="Texture2D" uid="uid://yjmixl54r314" path="res://Art/ui/downard_banner_green.png" id="7_6qiom"]
+[ext_resource type="PackedScene" uid="uid://ergdpgq6lk5g" path="res://UI/character_frame.tscn" id="8_vqi37"]
+[ext_resource type="Texture2D" uid="uid://bp3v00afwjesf" path="res://Art/Main Characters/Mask Dude/select.png" id="9_jqb7t"]
+[ext_resource type="Texture2D" uid="uid://ddp3cuf5ydscq" path="res://Art/Main Characters/Ninja Frog/select.png" id="10_3fmc1"]
+[ext_resource type="Texture2D" uid="uid://dtb1y1evk312a" path="res://Art/Main Characters/Pink Man/select.png" id="11_avpj3"]
+[ext_resource type="Texture2D" uid="uid://ba46f5hor6joe" path="res://Art/Main Characters/Virtual Guy/select.png" id="12_thojy"]
+[ext_resource type="PackedScene" uid="uid://d1t73phfmh2s" path="res://UI/char_preview.tscn" id="13_sj7jc"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="14_rqhsx"]
+[ext_resource type="Texture2D" uid="uid://da6kpceq3rcp2" path="res://Art/Menu/Buttons/Previous.png" id="15_vupr6"]
+[ext_resource type="Texture2D" uid="uid://dtn36blikp5dq" path="res://Art/Menu/Buttons/Next.png" id="16_nfocy"]
+[ext_resource type="PackedScene" uid="uid://qb12n5178d87" path="res://UI/cursor_handler.tscn" id="17_g61vj"]
+
+[sub_resource type="Animation" id="Animation_kjy6b"]
+resource_name = "RESET"
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fondo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-677, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_xaoxs"]
+resource_name = "animated_bg"
+length = 60.0
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fondo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-677, -3269), Vector2(-677, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70k7v"]
+_data = {
+"RESET": SubResource("Animation_kjy6b"),
+"animated_bg": SubResource("Animation_xaoxs")
+}
+
+[node name="CharacterSelection" type="Node2D"]
+script = ExtResource("1_7wty3")
+metadata/_edit_lock_ = true
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2phbg")
+volume_db = -15.0
+autoplay = true
+
+[node name="fondo" type="TextureRect" parent="."]
+offset_left = -677.0
+offset_top = -3.0
+offset_right = 1940.0
+offset_bottom = 3988.0
+texture = ExtResource("3_iymno")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "animated_bg"
+libraries = {
+"": SubResource("AnimationLibrary_70k7v")
+}
+
+[node name="banner_0" type="Sprite2D" parent="."]
+position = Vector2(160, 672)
+scale = Vector2(3, 3)
+texture = ExtResource("4_6y6kk")
+
+[node name="banner_1" type="Sprite2D" parent="."]
+position = Vector2(1120, 672)
+scale = Vector2(3, 3)
+texture = ExtResource("5_gvjf2")
+
+[node name="banner_2" type="Sprite2D" parent="."]
+position = Vector2(480, 672)
+scale = Vector2(3, 3)
+texture = ExtResource("6_y61q7")
+
+[node name="banner_3" type="Sprite2D" parent="."]
+position = Vector2(800, 672)
+scale = Vector2(3, 3)
+texture = ExtResource("7_6qiom")
+
+[node name="wilding" parent="." instance=ExtResource("8_vqi37")]
+position = Vector2(480, 176)
+texture = ExtResource("9_jqb7t")
+characterName = "wilding"
+
+[node name="froggy" parent="." instance=ExtResource("8_vqi37")]
+position = Vector2(584, 176)
+texture = ExtResource("10_3fmc1")
+characterName = "froggy"
+
+[node name="pink_guy" parent="." instance=ExtResource("8_vqi37")]
+position = Vector2(688, 176)
+texture = ExtResource("11_avpj3")
+characterName = "pink_guy"
+
+[node name="very_real" parent="." instance=ExtResource("8_vqi37")]
+position = Vector2(792, 176)
+texture = ExtResource("12_thojy")
+characterName = "very_real"
+
+[node name="CharPreview0" parent="." instance=ExtResource("13_sj7jc")]
+position = Vector2(160, 552)
+
+[node name="CharPreview1" parent="." instance=ExtResource("13_sj7jc")]
+position = Vector2(480, 552)
+player = 1
+
+[node name="CharPreview2" parent="." instance=ExtResource("13_sj7jc")]
+position = Vector2(800, 552)
+player = 2
+
+[node name="CharPreview3" parent="." instance=ExtResource("13_sj7jc")]
+position = Vector2(1120, 552)
+player = 3
+
+[node name="text" type="Node" parent="."]
+
+[node name="player1" type="RichTextLabel" parent="text"]
+offset_left = 80.0
+offset_top = 664.0
+offset_right = 256.0
+offset_bottom = 688.0
+theme_override_fonts/normal_font = ExtResource("14_rqhsx")
+theme_override_font_sizes/normal_font_size = 20
+text = "PLAYER 1"
+scroll_active = false
+
+[node name="player2" type="RichTextLabel" parent="text"]
+offset_left = 400.0
+offset_top = 664.0
+offset_right = 576.0
+offset_bottom = 688.0
+theme_override_fonts/normal_font = ExtResource("14_rqhsx")
+theme_override_font_sizes/normal_font_size = 20
+text = "PLAYER 2"
+scroll_active = false
+
+[node name="player3" type="RichTextLabel" parent="text"]
+offset_left = 720.0
+offset_top = 664.0
+offset_right = 896.0
+offset_bottom = 688.0
+theme_override_fonts/normal_font = ExtResource("14_rqhsx")
+theme_override_font_sizes/normal_font_size = 20
+text = "PLAYER 3"
+scroll_active = false
+
+[node name="player4" type="RichTextLabel" parent="text"]
+offset_left = 1040.0
+offset_top = 664.0
+offset_right = 1216.0
+offset_bottom = 688.0
+theme_override_fonts/normal_font = ExtResource("14_rqhsx")
+theme_override_font_sizes/normal_font_size = 20
+text = "PLAYER 4"
+scroll_active = false
+
+[node name="chooseCharacterText" type="RichTextLabel" parent="text"]
+offset_left = 224.0
+offset_top = 40.0
+offset_right = 1064.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("14_rqhsx")
+theme_override_font_sizes/normal_font_size = 40
+text = "CHOOSE YOUR CHARACTER"
+
+[node name="rounds" type="RichTextLabel" parent="text"]
+offset_left = 384.0
+offset_top = 280.0
+offset_right = 920.0
+offset_bottom = 336.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("14_rqhsx")
+theme_override_font_sizes/normal_font_size = 25
+text = "HOW MUCH DO YOU LIKE TORTILLA DE PATATAS?"
+
+[node name="roundSelection" type="Node" parent="."]
+
+[node name="left" type="Sprite2D" parent="roundSelection"]
+position = Vector2(540.313, 383.024)
+scale = Vector2(3.45833, 3.45833)
+texture = ExtResource("15_vupr6")
+
+[node name="right" type="Sprite2D" parent="roundSelection"]
+position = Vector2(724.313, 383.024)
+scale = Vector2(3.54762, 3.54762)
+texture = ExtResource("16_nfocy")
+
+[node name="tortillas" type="RichTextLabel" parent="roundSelection"]
+offset_left = 612.313
+offset_top = 359.024
+offset_right = 660.313
+offset_bottom = 409.024
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("14_rqhsx")
+theme_override_font_sizes/normal_font_size = 50
+text = "5"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CursorHandler" parent="." instance=ExtResource("17_g61vj")]
+
+[node name="charDeselectTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="player_select" from="." to="CharPreview0" method="on_player_select"]
+[connection signal="player_select" from="." to="CharPreview1" method="on_player_select"]
+[connection signal="player_select" from="." to="CharPreview2" method="on_player_select"]
+[connection signal="player_select" from="." to="CharPreview3" method="on_player_select"]
+[connection signal="finished" from="bgMusic" to="." method="_on_bg_music_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_bg_animation_finished"]
+[connection signal="cursor_entered" from="wilding" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="wilding" to="." method="on_cursor_exited"]
+[connection signal="cursor_entered" from="froggy" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="froggy" to="." method="on_cursor_exited"]
+[connection signal="cursor_entered" from="pink_guy" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="pink_guy" to="." method="on_cursor_exited"]
+[connection signal="cursor_entered" from="very_real" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="very_real" to="." method="on_cursor_exited"]
+[connection signal="timeout" from="charDeselectTimer" to="." method="on_timeout"]
