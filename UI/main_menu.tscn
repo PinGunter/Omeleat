@@ -136,20 +136,20 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_previous = NodePath("../Salir")
 theme = SubResource("Theme_v5gtf")
-text = "Empezar"
+text = "Play"
 
 [node name="Opciones" type="Button" parent="div"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_1khvn")
-text = "Opciones"
+text = "Options"
 
 [node name="Salir" type="Button" parent="div"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_next = NodePath("../Empezar")
 theme = SubResource("Theme_vpid8")
-text = "Salir"
+text = "Quit"
 
 [node name="ptrStart" type="Sprite2D" parent="."]
 position = Vector2(570, 400)

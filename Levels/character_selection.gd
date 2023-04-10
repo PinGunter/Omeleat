@@ -21,15 +21,24 @@ func _on_bg_music_finished():
 	$bgMusic.play()
 
 func on_cursor_entered(where: String, device: int):
-	$CursorHandler.set_cursor_state(device, true)
+	$CursorHandler.set_cursor_state(device, where, true)
 	player_select.emit(device, where)
-	lastDevice = device
 	timer.stop()
 
 	
 func on_cursor_exited(where: String, device: int):
-	$CursorHandler.set_cursor_state(device, false)
+	$CursorHandler.set_cursor_state(device, where, false)
+	lastDevice = device
 	timer.start()
 
 func on_timeout():
 	player_select.emit(lastDevice,"no_character")
+
+
+func on_cursor_clicked(device, where):
+	var frames = get_node("frames").get_children()
+	for f in frames:
+		if f.get("name") == where:
+			f.select(device)
+		elif f.get("player") == device:
+			f.deselect()

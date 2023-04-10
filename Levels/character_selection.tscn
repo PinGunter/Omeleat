@@ -101,22 +101,24 @@ position = Vector2(800, 672)
 scale = Vector2(3, 3)
 texture = ExtResource("7_6qiom")
 
-[node name="wilding" parent="." instance=ExtResource("8_vqi37")]
+[node name="frames" type="Node2D" parent="."]
+
+[node name="wilding" parent="frames" instance=ExtResource("8_vqi37")]
 position = Vector2(480, 176)
 texture = ExtResource("9_jqb7t")
 characterName = "wilding"
 
-[node name="froggy" parent="." instance=ExtResource("8_vqi37")]
+[node name="froggy" parent="frames" instance=ExtResource("8_vqi37")]
 position = Vector2(584, 176)
 texture = ExtResource("10_3fmc1")
 characterName = "froggy"
 
-[node name="pink_guy" parent="." instance=ExtResource("8_vqi37")]
+[node name="pink_guy" parent="frames" instance=ExtResource("8_vqi37")]
 position = Vector2(688, 176)
 texture = ExtResource("11_avpj3")
 characterName = "pink_guy"
 
-[node name="very_real" parent="." instance=ExtResource("8_vqi37")]
+[node name="very_real" parent="frames" instance=ExtResource("8_vqi37")]
 position = Vector2(792, 176)
 texture = ExtResource("12_thojy")
 characterName = "very_real"
@@ -235,12 +237,13 @@ one_shot = true
 [connection signal="player_select" from="." to="CharPreview3" method="on_player_select"]
 [connection signal="finished" from="bgMusic" to="." method="_on_bg_music_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_bg_animation_finished"]
-[connection signal="cursor_entered" from="wilding" to="." method="on_cursor_entered"]
-[connection signal="cursor_exited" from="wilding" to="." method="on_cursor_exited"]
-[connection signal="cursor_entered" from="froggy" to="." method="on_cursor_entered"]
-[connection signal="cursor_exited" from="froggy" to="." method="on_cursor_exited"]
-[connection signal="cursor_entered" from="pink_guy" to="." method="on_cursor_entered"]
-[connection signal="cursor_exited" from="pink_guy" to="." method="on_cursor_exited"]
-[connection signal="cursor_entered" from="very_real" to="." method="on_cursor_entered"]
-[connection signal="cursor_exited" from="very_real" to="." method="on_cursor_exited"]
+[connection signal="cursor_entered" from="frames/wilding" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="frames/wilding" to="." method="on_cursor_exited"]
+[connection signal="cursor_entered" from="frames/froggy" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="frames/froggy" to="." method="on_cursor_exited"]
+[connection signal="cursor_entered" from="frames/pink_guy" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="frames/pink_guy" to="." method="on_cursor_exited"]
+[connection signal="cursor_entered" from="frames/very_real" to="." method="on_cursor_entered"]
+[connection signal="cursor_exited" from="frames/very_real" to="." method="on_cursor_exited"]
+[connection signal="cursor_clicked" from="CursorHandler" to="." method="on_cursor_clicked"]
 [connection signal="timeout" from="charDeselectTimer" to="." method="on_timeout"]
