@@ -4,6 +4,7 @@ extends Node
 var cursor_scene = preload("res://UI/cursor.tscn")
 signal cursor_clicked(device: int, where: String)
 
+
 var cursors = {}
 
 func add_cursor(n: int):
