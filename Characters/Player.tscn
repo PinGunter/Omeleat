@@ -281,7 +281,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_7sdjq")
 }],
 "loop": true,
-"name": &"wallJump",
+"name": &"wallSlide",
 "speed": 5.0
 }]
 
@@ -294,7 +294,7 @@ script = ExtResource("1_hmhi8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uwlnq")
-animation = &"wallJump"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -304,9 +304,9 @@ shape = SubResource("CapsuleShape2D_op8ed")
 [node name="RightWall" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 rotation = -1.5708
-target_position = Vector2(-3.62396e-05, 10)
+target_position = Vector2(0, 11)
 
 [node name="LeftWall" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 rotation = 1.5708
-target_position = Vector2(4.33922e-05, 12)
+target_position = Vector2(4.00543e-05, 11)
