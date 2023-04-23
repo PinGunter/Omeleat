@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://da6kpceq3rcp2" path="res://Art/Menu/Buttons/Previous.png" id="15_vupr6"]
 [ext_resource type="Texture2D" uid="uid://dtn36blikp5dq" path="res://Art/Menu/Buttons/Next.png" id="16_nfocy"]
 [ext_resource type="PackedScene" uid="uid://qb12n5178d87" path="res://UI/cursor_handler.tscn" id="17_g61vj"]
+[ext_resource type="PackedScene" uid="uid://cyqo8kpv7y0ka" path="res://UI/button.tscn" id="18_4p10x"]
 [ext_resource type="Texture2D" uid="uid://lbgvqb3daqaf" path="res://Art/Menu/Buttons/Back.png" id="18_pwpgq"]
 
 [sub_resource type="Animation" id="Animation_kjy6b"]
@@ -57,9 +58,6 @@ _data = {
 "RESET": SubResource("Animation_kjy6b"),
 "animated_bg": SubResource("Animation_xaoxs")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w53f5"]
-size = Vector2(84, 85)
 
 [node name="CharacterSelection" type="Node2D"]
 script = ExtResource("1_7wty3")
@@ -235,20 +233,10 @@ metadata/_edit_use_anchors_ = true
 wait_time = 0.1
 one_shot = true
 
-[node name="goBack" type="Node2D" parent="."]
-position = Vector2(24, 16)
-metadata/_edit_group_ = true
-
-[node name="Back" type="Sprite2D" parent="goBack"]
-position = Vector2(40, 42)
-scale = Vector2(4.625, 4.625)
-texture = ExtResource("18_pwpgq")
-
-[node name="goBackArea" type="Area2D" parent="goBack"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="goBack/goBackArea"]
-position = Vector2(41, 41.5)
-shape = SubResource("RectangleShape2D_w53f5")
+[node name="backButton" parent="." groups=["buttons"] instance=ExtResource("18_4p10x")]
+position = Vector2(72, 72)
+sprite = ExtResource("18_pwpgq")
+action_name = "back"
 
 [connection signal="player_select" from="." to="CharPreview0" method="on_player_select"]
 [connection signal="player_select" from="." to="CharPreview1" method="on_player_select"]
@@ -266,3 +254,6 @@ shape = SubResource("RectangleShape2D_w53f5")
 [connection signal="cursor_exited" from="frames/very_real" to="." method="on_cursor_exited"]
 [connection signal="cursor_clicked" from="CursorHandler" to="." method="on_cursor_clicked"]
 [connection signal="timeout" from="charDeselectTimer" to="." method="on_timeout"]
+[connection signal="action" from="backButton" to="." method="_on_button_action"]
+[connection signal="button_entered" from="backButton" to="." method="on_button_entered"]
+[connection signal="button_exited" from="backButton" to="." method="on_button_exited"]

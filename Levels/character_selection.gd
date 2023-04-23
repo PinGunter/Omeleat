@@ -43,23 +43,31 @@ func _on_bg_music_finished():
 
 func on_cursor_entered(where: String, device: int):
 	$CursorHandler.set_cursor_state(device, where, true)
-	player_select.emit(device, where)
-	timer.stop()
+	if player_chosen[device] == no_character:
+		player_select.emit(device, where)
+		timer.stop()
 
 	
 func on_cursor_exited(where: String, device: int):
 	$CursorHandler.set_cursor_state(device, where, false)
-	if player_chosen[device] != no_character:
+	if player_chosen[device] == no_character:
 		lastDevice = device
 		timer.start()
 
+func on_button_entered(where: String, device : int):
+	$CursorHandler.set_cursor_state(device, where, true)
+	
+func on_button_exited(where: String, device : int):
+	$CursorHandler.set_cursor_state(device, where, false)
+
 func on_timeout():
-	if player_chosen[lastDevice] != no_character:
+	if player_chosen[lastDevice] == no_character:
 		player_select.emit(lastDevice,no_character)
 
 
 func on_cursor_clicked(device, where):
 	var frames = get_node("frames").get_children()
+	# check character frames
 	for f in frames:
 		if f.get("name") == where:
 			f.select(device)
@@ -67,4 +75,13 @@ func on_cursor_clicked(device, where):
 			player_chosen[device] = where
 		elif f.get("player") == device:
 			f.deselect()
-	print(player_chosen)
+	# check buttons
+	var buttons = get_tree().get_nodes_in_group("buttons")
+	for b in buttons:
+		if b.get("name") == where:
+			b.launch_action()
+
+
+func _on_button_action(what):
+	if what == "back":
+		SceneTransition.change_scene("res://UI/main_menu.tscn")
