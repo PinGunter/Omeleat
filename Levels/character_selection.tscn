@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c03gc63tnlnvy"]
+[gd_scene load_steps=24 format=3 uid="uid://c03gc63tnlnvy"]
 
 [ext_resource type="Script" path="res://Levels/character_selection.gd" id="1_7wty3"]
 [ext_resource type="AudioStream" uid="uid://ddgrrs4erkcpj" path="res://Art/Music/Louie Zong - ringleader raccoon.mp3" id="2_2phbg"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://qb12n5178d87" path="res://UI/cursor_handler.tscn" id="17_g61vj"]
 [ext_resource type="PackedScene" uid="uid://cyqo8kpv7y0ka" path="res://UI/button.tscn" id="18_4p10x"]
 [ext_resource type="Texture2D" uid="uid://lbgvqb3daqaf" path="res://Art/Menu/Buttons/Back.png" id="18_pwpgq"]
+[ext_resource type="Texture2D" uid="uid://d3am62gpatajq" path="res://Art/Menu/Buttons/Play.png" id="20_wtem5"]
 
 [sub_resource type="Animation" id="Animation_kjy6b"]
 resource_name = "RESET"
@@ -238,6 +239,11 @@ position = Vector2(72, 72)
 sprite = ExtResource("18_pwpgq")
 action_name = "back"
 
+[node name="nextButton" parent="." groups=["buttons"] instance=ExtResource("18_4p10x")]
+position = Vector2(1192, 256)
+sprite = ExtResource("20_wtem5")
+action_name = "next"
+
 [connection signal="player_select" from="." to="CharPreview0" method="on_player_select"]
 [connection signal="player_select" from="." to="CharPreview1" method="on_player_select"]
 [connection signal="player_select" from="." to="CharPreview2" method="on_player_select"]
@@ -257,3 +263,6 @@ action_name = "back"
 [connection signal="action" from="backButton" to="." method="_on_button_action"]
 [connection signal="button_entered" from="backButton" to="." method="on_button_entered"]
 [connection signal="button_exited" from="backButton" to="." method="on_button_exited"]
+[connection signal="action" from="nextButton" to="." method="_on_button_action"]
+[connection signal="button_entered" from="nextButton" to="." method="on_button_entered"]
+[connection signal="button_exited" from="nextButton" to="." method="on_button_exited"]

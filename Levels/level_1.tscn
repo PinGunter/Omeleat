@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://v3talrq2rbgc" path="res://Art/Terrain/Terrain (16x16).png" id="1_38ni8"]
 [ext_resource type="Texture2D" uid="uid://bv50rbph8a2v2" path="res://Art/Background/Brown.png" id="1_kh8ss"]
-[ext_resource type="PackedScene" path="res://Characters/Player.tscn" id="2_bg5ff"]
+[ext_resource type="PackedScene" uid="uid://dsxul064ovfgj" path="res://Characters/Player.tscn" id="2_bg5ff"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88agt"]
 texture = ExtResource("1_38ni8")
@@ -485,3 +485,4 @@ position = Vector2(584, 599)
 
 [node name="Player2" parent="." instance=ExtResource("2_bg5ff")]
 position = Vector2(697, 593)
+controller = 1

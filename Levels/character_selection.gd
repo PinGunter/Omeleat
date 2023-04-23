@@ -85,3 +85,5 @@ func on_cursor_clicked(device, where):
 func _on_button_action(what):
 	if what == "back":
 		SceneTransition.change_scene("res://UI/main_menu.tscn")
+	elif what == "next":
+		SceneTransition.change_scene("res://Levels/level_1.tscn")

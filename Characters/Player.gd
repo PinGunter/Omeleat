@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
+@export var controller : int
 
 const SPEED : float = 200.0
-const JUMP_VELOCITY : float = -400.0
+const JUMP_VELOCITY : float = -300.0
 const DOUBLE_JUMP_VELOCITY : float = -300.0
 const WALL_SLIDE_ACCELERATION : float = 5.0
 const MAX_WALL_SLIDE_SPEED : float = 100.0
@@ -29,12 +30,12 @@ func _physics_process(delta):
 		if(velocity.y > 0):
 			fall()
 		if is_on_wall():
-			if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+			if is_action_pressed("left") or is_action_pressed("right"):
 				wall_slide(delta)
-			if Input.is_action_just_pressed("jump") and wall_jumps > 0:
+			if is_action_just_pressed("jump") and wall_jumps > 0:
 				wall_jump()
 		else:
-			if Input.is_action_just_pressed("jump") and jumps > 0:
+			if is_action_just_pressed("jump") and jumps > 0:
 				double_jump()
 
 	else: #floor
@@ -47,14 +48,14 @@ func _physics_process(delta):
 		else:
 			current_animation = "run"
 			
-		if Input.is_action_just_pressed("jump"):
+		if is_action_just_pressed("jump"):
 			jump()
 			
 
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	direction = Input.get_vector("left", "right", "up", "down")
+	direction = get_vector("left", "right", "up", "down")
 	
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -111,4 +112,12 @@ func nextToRightWall():
 
 func nextToLeftWall():
 	return $LeftWall.is_colliding()
+	
+func is_action_just_pressed(action : String):
+	return Input.is_action_just_pressed(action+"_"+str(controller))
 
+func is_action_pressed(action : String):
+	return Input.is_action_pressed(action+"_"+str(controller))
+
+func get_vector(negative_x: String, positive_x: String, negative_y: String, positive_y: String):
+	return Input.get_vector(negative_x+"_"+str(controller),positive_x+"_"+str(controller), negative_y+"_"+str(controller), positive_y+"_"+str(controller))
