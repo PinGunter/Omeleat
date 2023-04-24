@@ -1,10 +1,11 @@
 extends Node2D
 
 @export var rounds : int = 5
-@onready var rounds_text = 5
+
 
 @onready var previews = [$CharPreview0, $CharPreview1, $CharPreview2, $CharPreview3]
 @onready var timer = $charDeselectTimer
+@onready var rounds_text = $roundSelection/tortillas
 
 var lastDevice
 signal player_select(player, selection)
@@ -25,6 +26,7 @@ func _ready():
 	for n in Input.get_connected_joypads():
 		if n < 4:
 			player_select.emit(n, no_character)
+	update_rounds_text(rounds)
 
 func _input(event):
 	for n in range(4):
@@ -87,3 +89,22 @@ func _on_button_action(what):
 		SceneTransition.change_scene("res://UI/main_menu.tscn")
 	elif what == "next":
 		SceneTransition.change_scene("res://Levels/level_1.tscn")
+	elif what == "removeRounds":
+		rounds = max(1,rounds-1)
+		update_rounds_text(rounds)
+	elif what == "addRounds":
+		rounds = min(10,rounds+1)
+		update_rounds_text(rounds)
+
+func update_rounds_text(r : int):
+	rounds_text.set("text", "[center]%s[/center]" % r)
+	if r == 10:
+		$roundSelection/rightButton.visible = false
+		$roundSelection/rightButton.force_exit()
+	else:
+		$roundSelection/rightButton.visible = true
+	if r == 1:
+		$roundSelection/leftButton.visible = false
+		$roundSelection/rightButton.force_exit()
+	else:
+		$roundSelection/leftButton.visible = true

@@ -205,28 +205,36 @@ text = "HOW MUCH DO YOU LIKE TORTILLA DE PATATAS?"
 
 [node name="roundSelection" type="Node" parent="."]
 
-[node name="left" type="Sprite2D" parent="roundSelection"]
-position = Vector2(540.313, 383.024)
-scale = Vector2(3.45833, 3.45833)
-texture = ExtResource("15_vupr6")
-
-[node name="right" type="Sprite2D" parent="roundSelection"]
-position = Vector2(724.313, 383.024)
-scale = Vector2(3.54762, 3.54762)
-texture = ExtResource("16_nfocy")
-
 [node name="tortillas" type="RichTextLabel" parent="roundSelection"]
-offset_left = 612.313
-offset_top = 359.024
-offset_right = 660.313
-offset_bottom = 409.024
+anchors_preset = -1
+anchor_left = -0.0533695
+anchor_top = -3.3315e-05
+anchor_right = 0.0466305
+anchor_bottom = -3.3315e-05
+offset_left = 620.313
+offset_top = 360.024
+offset_right = 668.313
+offset_bottom = 410.024
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("14_rqhsx")
 theme_override_font_sizes/normal_font_size = 50
-text = "5"
+bbcode_enabled = true
+text = "[center]5[/center]"
 fit_content = true
 scroll_active = false
 metadata/_edit_use_anchors_ = true
+
+[node name="leftButton" parent="roundSelection" groups=["buttons"] instance=ExtResource("18_4p10x")]
+position = Vector2(520, 384)
+scale = Vector2(0.5, 0.5)
+sprite = ExtResource("15_vupr6")
+action_name = "removeRounds"
+
+[node name="rightButton" parent="roundSelection" groups=["buttons"] instance=ExtResource("18_4p10x")]
+position = Vector2(760, 384)
+scale = Vector2(0.5, 0.5)
+sprite = ExtResource("16_nfocy")
+action_name = "addRounds"
 
 [node name="CursorHandler" parent="." instance=ExtResource("17_g61vj")]
 
@@ -258,6 +266,12 @@ action_name = "next"
 [connection signal="cursor_exited" from="frames/pink_guy" to="." method="on_cursor_exited"]
 [connection signal="cursor_entered" from="frames/very_real" to="." method="on_cursor_entered"]
 [connection signal="cursor_exited" from="frames/very_real" to="." method="on_cursor_exited"]
+[connection signal="action" from="roundSelection/leftButton" to="." method="_on_button_action"]
+[connection signal="button_entered" from="roundSelection/leftButton" to="." method="on_button_entered"]
+[connection signal="button_exited" from="roundSelection/leftButton" to="." method="on_button_exited"]
+[connection signal="action" from="roundSelection/rightButton" to="." method="_on_button_action"]
+[connection signal="button_entered" from="roundSelection/rightButton" to="." method="on_button_entered"]
+[connection signal="button_exited" from="roundSelection/rightButton" to="." method="on_button_exited"]
 [connection signal="cursor_clicked" from="CursorHandler" to="." method="on_cursor_clicked"]
 [connection signal="timeout" from="charDeselectTimer" to="." method="on_timeout"]
 [connection signal="action" from="backButton" to="." method="_on_button_action"]
