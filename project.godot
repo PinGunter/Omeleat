@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneTransition="*res://UI/scene_transition.tscn"
+GameStorage="*res://Global/game_storage.gd"
+PlayerManager="*res://Characters/player_manager.gd"
 
 [display]
 

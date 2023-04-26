@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var controller : int
+@export var character : String
 
 const SPEED : float = 200.0
 const JUMP_VELOCITY : float = -300.0
@@ -68,7 +69,7 @@ func _physics_process(delta):
 	update_facing_direction()
 	
 func update_animation():
-	animated_sprite.play(current_animation)
+	animated_sprite.play(character + "_" + current_animation)
 			
 func update_facing_direction():
 	if direction.x < 0:

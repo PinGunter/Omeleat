@@ -20,6 +20,7 @@ func _on_area_2d_area_entered(area):
 		if area_name.begins_with("cursor"):
 			button_entered.emit(name, parent.get("player_controller"))
 			last_device = parent.get("player_controller")
+			print("Button: " + action_name + " lastDevice: " + str(last_device))
 
 
 
@@ -33,4 +34,5 @@ func launch_action():
 	action.emit(action_name)
 
 func force_exit():
+	print(action_name + " forcing exit " + str(last_device))
 	button_exited.emit(name, last_device)

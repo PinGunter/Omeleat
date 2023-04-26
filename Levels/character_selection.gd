@@ -69,14 +69,18 @@ func on_timeout():
 
 func on_cursor_clicked(device, where):
 	var frames = get_node("frames").get_children()
+	var frame_names = frames.map(func(f): return f.get("name"))
 	# check character frames
-	for f in frames:
-		if f.get("name") == where:
-			f.select(device)
-			player_select.emit(device,where)
-			player_chosen[device] = where
-		elif f.get("player") == device:
-			f.deselect()
+	if where in frame_names:
+		for f in frames:
+			if f.get("name") == where:
+
+				f.select(device)
+				player_select.emit(device,where)
+				player_chosen[device] = where
+			elif f.get("player") == device:
+				f.deselect()
+				
 	# check buttons
 	var buttons = get_tree().get_nodes_in_group("buttons")
 	for b in buttons:
@@ -84,10 +88,15 @@ func on_cursor_clicked(device, where):
 			b.launch_action()
 
 
+func update_global_selection():
+	for p in player_chosen:
+		GameStorage.update_player(p,player_chosen[p])
+
 func _on_button_action(what):
 	if what == "back":
 		SceneTransition.change_scene("res://UI/main_menu.tscn")
 	elif what == "next":
+		update_global_selection()
 		SceneTransition.change_scene("res://Levels/level_1.tscn")
 	elif what == "removeRounds":
 		rounds = max(1,rounds-1)
@@ -100,11 +109,11 @@ func update_rounds_text(r : int):
 	rounds_text.set("text", "[center]%s[/center]" % r)
 	if r == 10:
 		$roundSelection/rightButton.visible = false
-		$roundSelection/rightButton.force_exit()
+		$roundSelection/rightButton.force_exit() # no se si dejarlo o no :)
 	else:
 		$roundSelection/rightButton.visible = true
 	if r == 1:
 		$roundSelection/leftButton.visible = false
-		$roundSelection/rightButton.force_exit()
+		$roundSelection/leftButton.force_exit()
 	else:
 		$roundSelection/leftButton.visible = true

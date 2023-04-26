@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://qb12n5178d87" path="res://UI/cursor_handler.tscn" id="17_g61vj"]
 [ext_resource type="PackedScene" uid="uid://cyqo8kpv7y0ka" path="res://UI/button.tscn" id="18_4p10x"]
 [ext_resource type="Texture2D" uid="uid://lbgvqb3daqaf" path="res://Art/Menu/Buttons/Back.png" id="18_pwpgq"]
-[ext_resource type="Texture2D" uid="uid://d3am62gpatajq" path="res://Art/Menu/Buttons/Play.png" id="20_wtem5"]
+[ext_resource type="Texture2D" uid="uid://bdcvow4xpwhar" path="res://Art/Menu/Buttons/play_with_text.png" id="20_4kl14"]
 
 [sub_resource type="Animation" id="Animation_kjy6b"]
 resource_name = "RESET"
@@ -225,7 +225,7 @@ scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="leftButton" parent="roundSelection" groups=["buttons"] instance=ExtResource("18_4p10x")]
-position = Vector2(520, 384)
+position = Vector2(521, 384)
 scale = Vector2(0.5, 0.5)
 sprite = ExtResource("15_vupr6")
 action_name = "removeRounds"
@@ -248,8 +248,8 @@ sprite = ExtResource("18_pwpgq")
 action_name = "back"
 
 [node name="nextButton" parent="." groups=["buttons"] instance=ExtResource("18_4p10x")]
-position = Vector2(1192, 256)
-sprite = ExtResource("20_wtem5")
+position = Vector2(1136, 264)
+sprite = ExtResource("20_4kl14")
 action_name = "next"
 
 [connection signal="player_select" from="." to="CharPreview0" method="on_player_select"]
