@@ -6,6 +6,7 @@ extends Node2D
 @onready var previews = [$CharPreview0, $CharPreview1, $CharPreview2, $CharPreview3]
 @onready var timer = $charDeselectTimer
 @onready var rounds_text = $roundSelection/tortillas
+@onready var next_btn = $nextButton
 
 var lastDevice
 signal player_select(player, selection)
@@ -21,6 +22,7 @@ var player_chosen = {
 	2: no_character,
 	3: no_character
 }
+
 
 func _ready():
 	for n in Input.get_connected_joypads():
@@ -74,13 +76,17 @@ func on_cursor_clicked(device, where):
 	if where in frame_names:
 		for f in frames:
 			if f.get("name") == where:
-
 				f.select(device)
 				player_select.emit(device,where)
 				player_chosen[device] = where
 			elif f.get("player") == device:
 				f.deselect()
 				
+	if (check_selected() > 1):
+		next_btn.visible = true
+	else:
+		next_btn.visible = false
+	
 	# check buttons
 	var buttons = get_tree().get_nodes_in_group("buttons")
 	for b in buttons:
@@ -119,3 +125,10 @@ func update_rounds_text(r : int):
 		$roundSelection/leftButton.force_exit()
 	else:
 		$roundSelection/leftButton.visible = true
+
+func check_selected() -> int:
+	var selected = 0
+	for p in player_chosen:
+		if player_chosen[p] != no_character:
+			selected += 1
+	return selected

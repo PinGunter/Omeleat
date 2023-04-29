@@ -248,6 +248,7 @@ sprite = ExtResource("18_pwpgq")
 action_name = "back"
 
 [node name="nextButton" parent="." groups=["buttons"] instance=ExtResource("18_4p10x")]
+visible = false
 position = Vector2(1136, 264)
 sprite = ExtResource("20_4kl14")
 action_name = "next"
