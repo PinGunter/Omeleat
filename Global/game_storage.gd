@@ -14,7 +14,14 @@ var players = {
 
 func get_players() -> Dictionary:
 	return players
-
+	
+func get_active_players() -> Dictionary:
+	var active = {}
+	for p in players:
+		if players[p][0] != "no_character":
+			active[p] = players[p]
+	return active
+		
 
 func update_player(player : int, character : String) -> void:
 	if player >= 0 and player <= 4:

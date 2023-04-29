@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var rounds : int = 5
-
+	
 
 @onready var previews = [$CharPreview0, $CharPreview1, $CharPreview2, $CharPreview3]
 @onready var timer = $charDeselectTimer
@@ -91,13 +91,15 @@ func on_cursor_clicked(device, where):
 func update_global_selection():
 	for p in player_chosen:
 		GameStorage.update_player(p,player_chosen[p])
+		
 
 func _on_button_action(what):
 	if what == "back":
 		SceneTransition.change_scene("res://UI/main_menu.tscn")
 	elif what == "next":
 		update_global_selection()
-		SceneTransition.change_scene("res://Levels/level_1.tscn")
+		if GameStorage.get_active_players().size() > 1:
+			SceneTransition.change_scene("res://Levels/level_1.tscn")
 	elif what == "removeRounds":
 		rounds = max(1,rounds-1)
 		update_rounds_text(rounds)
