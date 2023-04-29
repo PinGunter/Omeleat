@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+ConfigLoader="*res://Settings/config_loader.gd"
 SceneTransition="*res://UI/scene_transition.tscn"
 
 [display]

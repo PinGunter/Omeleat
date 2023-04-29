@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c10p0vtvoy55o"]
+[gd_scene load_steps=5 format=3 uid="uid://c10p0vtvoy55o"]
 
 [ext_resource type="Script" path="res://Settings/save_game.gd" id="1_odp8y"]
 [ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="2_aj7dv"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="3_e37js"]
+[ext_resource type="Texture2D" uid="uid://dldmitoolhmqy" path="res://Art/Menu/Buttons/circle_btn.png" id="4_yqns4"]
 
-[node name="Control" type="Control"]
+[node name="Config" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_odp8y")
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -18,23 +21,105 @@ offset_right = 1280.0
 offset_bottom = 722.0
 texture = ExtResource("2_aj7dv")
 stretch_mode = 1
+metadata/_edit_lock_ = true
 
-[node name="Volume" type="HSlider" parent="."]
-layout_mode = 0
-offset_left = 399.0
-offset_top = 161.0
-offset_right = 1033.0
-offset_bottom = 373.0
-max_value = 10.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="FullScreen" type="CheckBox" parent="."]
-layout_mode = 0
-offset_left = 618.0
-offset_top = 394.0
-offset_right = 819.0
-offset_bottom = 451.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="fullscreenTxt" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_e37js")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Full Screen"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "FULL SCREEN"
+theme_override_fonts/font = ExtResource("3_e37js")
+theme_override_font_sizes/font_size = 30
+text = "ON"
+flat = true
 
-[connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]
-[connection signal="pressed" from="FullScreen" to="." method="_on_full_screen_pressed"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="volumeTxt" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_e37js")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Volume"
+fit_content = true
+scroll_active = false
+
+[node name="Volume" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 144.0
+offset_bottom = 213.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("3_e37js")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center][color=#000]Options[/color][/center]"
+fit_content = true
+
+[node name="CircleBtn" type="Sprite2D" parent="."]
+position = Vector2(1032, 640)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("4_yqns4")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 624.0
+offset_right = 1240.0
+offset_bottom = 664.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_e37js")
+theme_override_font_sizes/normal_font_size = 30
+text = "BACK"
+fit_content = true
+scroll_active = false
+
+[connection signal="focus_entered" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_focus_exited"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_full_screen_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/HBoxContainer/Volume" to="." method="_on_volume_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/HBoxContainer/Volume" to="." method="_on_volume_focus_exited"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/Volume" to="." method="_on_volume_value_changed"]
