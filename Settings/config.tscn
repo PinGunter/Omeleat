@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://c10p0vtvoy55o"]
+
+[ext_resource type="Script" path="res://Settings/save_game.gd" id="1_odp8y"]
+[ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="2_aj7dv"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_odp8y")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 722.0
+texture = ExtResource("2_aj7dv")
+stretch_mode = 1
+
+[node name="Volume" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 161.0
+offset_right = 1033.0
+offset_bottom = 373.0
+max_value = 10.0
+
+[node name="FullScreen" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 394.0
+offset_right = 819.0
+offset_bottom = 451.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "FULL SCREEN"
+
+[connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]
+[connection signal="pressed" from="FullScreen" to="." method="_on_full_screen_pressed"]
