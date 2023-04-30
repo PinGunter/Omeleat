@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy4qwja6qj3jp"]
+
+[ext_resource type="Script" path="res://Global/game_storage.gd" id="1_dnsmt"]
+
+[node name="GameStorage" type="Node"]
+script = ExtResource("1_dnsmt")
