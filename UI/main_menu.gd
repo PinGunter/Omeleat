@@ -33,7 +33,7 @@ func _on_empezar_pressed():
 
 
 func _on_opciones_pressed():
-	pass # Replace with function body.
+	SceneTransition.change_scene("res://Settings/config.tscn")
 
 
 func _on_salir_pressed():
