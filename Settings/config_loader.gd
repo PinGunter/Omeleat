@@ -6,6 +6,8 @@ var config = {"fullscreen" : false, "volume" : 1.0}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_config()
+	if config["fullscreen"]:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	print(config)
 
 func load_config():

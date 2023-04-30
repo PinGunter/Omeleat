@@ -13,14 +13,7 @@ func _ready():
 	full_screen.text = "ON" if config["fullscreen"] else "OFF"
 	full_screen.grab_focus()
 
-func set_volume(value: float):
-	config["volume"] = value
-	ConfigLoader.save_config()
 
-func set_fullscreen(value: bool):
-	config["fullscreen"] = value
-	ConfigLoader.save_config()
-	
 func _on_volume_value_changed(value):
 	config["volume"] =value
 	ConfigLoader.save_config()
@@ -29,6 +22,10 @@ func _on_volume_value_changed(value):
 func _on_full_screen_pressed():
 	config["fullscreen"] = not config["fullscreen"]
 	full_screen.text = "ON" if config["fullscreen"] else "OFF"
+	if config["fullscreen"]:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	ConfigLoader.save_config()
 
 
