@@ -20,6 +20,7 @@ var wall_jumps : int = MAX_WALL_JUMPS
 var direction : Vector2 = Vector2.ZERO
 var was_in_air : bool = false
 var current_animation : String = "idle"
+@onready var down_rays : Array = [$DownRay,$DownRay2,$DownRay3]
 
 func _physics_process(delta):
 	
@@ -63,6 +64,12 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
+
+	for ray in down_rays:
+		if ray.is_colliding():
+			print("Colisionando con " + ray.get_collider().get("name"))
+
+	is_on_floor()
 
 	move_and_slide()
 	update_animation()

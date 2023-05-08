@@ -1154,23 +1154,42 @@ radius = 9.0
 height = 24.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_hmhi8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uwlnq")
-animation = &"pink_guy_wallSlide"
+animation = &"froggy_idle"
 autoplay = "froggy_idle"
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_op8ed")
+metadata/_edit_lock_ = true
 
 [node name="RightWall" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 rotation = -1.5708
 target_position = Vector2(0, 11)
+metadata/_edit_lock_ = true
 
 [node name="LeftWall" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 rotation = 1.5708
 target_position = Vector2(4.00543e-05, 11)
+metadata/_edit_lock_ = true
+
+[node name="DownRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+collision_mask = 2
+
+[node name="DownRay2" type="RayCast2D" parent="."]
+position = Vector2(6, 0)
+target_position = Vector2(0, 16)
+collision_mask = 2
+
+[node name="DownRay3" type="RayCast2D" parent="."]
+position = Vector2(-6, 0)
+target_position = Vector2(0, 16)
+collision_mask = 2
