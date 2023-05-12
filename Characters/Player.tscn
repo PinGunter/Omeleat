@@ -1181,15 +1181,20 @@ target_position = Vector2(4.00543e-05, 11)
 metadata/_edit_lock_ = true
 
 [node name="DownRay" type="RayCast2D" parent="."]
-target_position = Vector2(0, 16)
+target_position = Vector2(0, 34)
 collision_mask = 2
 
 [node name="DownRay2" type="RayCast2D" parent="."]
 position = Vector2(6, 0)
-target_position = Vector2(0, 16)
+target_position = Vector2(0, 34)
 collision_mask = 2
 
 [node name="DownRay3" type="RayCast2D" parent="."]
 position = Vector2(-6, 0)
-target_position = Vector2(0, 16)
+target_position = Vector2(0, 34)
 collision_mask = 2
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
