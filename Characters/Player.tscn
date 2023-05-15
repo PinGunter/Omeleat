@@ -1196,5 +1196,6 @@ collision_mask = 2
 
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 0.3
+one_shot = true
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

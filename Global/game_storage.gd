@@ -6,8 +6,8 @@ var current_round : int = 1
 # nested dictionary
 # for each player we have a dictionary with the character name at position 0 and their points at position 1
 var players = {
-	0: {0: "no_character", 1: 0},
-	1: {0: "no_character", 1: 0},
+	0: {0: "froggy", 1: 0},
+	1: {0: "very_real", 1: 0},
 	2: {0: "no_character", 1: 0},
 	3: {0: "no_character", 1: 0},
 }

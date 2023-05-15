@@ -1,14 +1,22 @@
 extends Node
 
-@export var initial_shake_strength : float = 30.0
-@export var shake_decay_rate : float = 5.0
+var initial_shake_strength : float = 30.0
+var shake_decay_rate : float = 5.0
 var shake_strength : float = 0.0
 
 var rng = RandomNumberGenerator.new()
 @onready var camera : Camera2D = get_viewport().get_camera_2d()
-
-
 @onready var timer = $Timer
+
+func _ready():
+	var scr_sk = ConfigLoader.get_config()["screen_shake"]
+	if scr_sk == 0:
+		initial_shake_strength = 0.0
+	elif scr_sk == 1:
+		initial_shake_strength = 15.0
+	elif scr_sk == 2:
+		initial_shake_strength = 30.0
+
 func _process(delta):
 	shake_strength = lerp(shake_strength, 0.0, shake_decay_rate * delta)
 	camera.offset = get_random_offset()

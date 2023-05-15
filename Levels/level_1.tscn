@@ -491,4 +491,3 @@ layer_0/tile_data = PackedInt32Array(65537, 458752, 1, 65538, 458752, 1, 65539, 
 position = Vector2(640, 360)
 
 [node name="ScreenShaker" parent="." instance=ExtResource("5_e5so0")]
-initial_shake_strength = 15.0
