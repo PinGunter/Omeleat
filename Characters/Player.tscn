@@ -1,4 +1,4 @@
-[gd_scene load_steps=170 format=3 uid="uid://dsxul064ovfgj"]
+[gd_scene load_steps=174 format=3 uid="uid://dsxul064ovfgj"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_hmhi8"]
 [ext_resource type="Texture2D" uid="uid://cpr7nnv28c0b5" path="res://Art/Main Characters/Ninja Frog/Fall (32x32).png" id="2_1oqnx"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://c4x63ynbk7gtk" path="res://Art/Main Characters/Virtual Guy/Wall Jump (32x32).png" id="13_6sg4r"]
 [ext_resource type="Texture2D" uid="uid://de5q5a6a4aevt" path="res://Art/Main Characters/Pink Man/Wall Jump (32x32).png" id="13_i471c"]
 [ext_resource type="Texture2D" uid="uid://cqu4hkmqnu4j4" path="res://Art/Main Characters/Mask Dude/Wall Jump (32x32).png" id="13_nkjud"]
+[ext_resource type="Texture2D" uid="uid://b8movu6ywvani" path="res://Art/Items/crown.png" id="26_ohuo7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ndupr"]
 atlas = ExtResource("2_inhg5")
@@ -1153,6 +1154,44 @@ animations = [{
 radius = 9.0
 height = 24.0
 
+[sub_resource type="Animation" id="Animation_0sx0k"]
+resource_name = "crown"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crown:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -17), Vector2(0, -21)]
+}
+
+[sub_resource type="Animation" id="Animation_cu6lw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crown:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -17)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnoos"]
+_data = {
+"RESET": SubResource("Animation_cu6lw"),
+"crown": SubResource("Animation_0sx0k")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_hmhi8")
@@ -1197,5 +1236,15 @@ collision_mask = 2
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="Crown" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+texture = ExtResource("26_ohuo7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "crown"
+libraries = {
+"": SubResource("AnimationLibrary_bnoos")
+}
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
