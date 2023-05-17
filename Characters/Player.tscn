@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=3 uid="uid://dsxul064ovfgj"]
+[gd_scene load_steps=175 format=3 uid="uid://dsxul064ovfgj"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_hmhi8"]
 [ext_resource type="Texture2D" uid="uid://cpr7nnv28c0b5" path="res://Art/Main Characters/Ninja Frog/Fall (32x32).png" id="2_1oqnx"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://de5q5a6a4aevt" path="res://Art/Main Characters/Pink Man/Wall Jump (32x32).png" id="13_i471c"]
 [ext_resource type="Texture2D" uid="uid://cqu4hkmqnu4j4" path="res://Art/Main Characters/Mask Dude/Wall Jump (32x32).png" id="13_nkjud"]
 [ext_resource type="Texture2D" uid="uid://b8movu6ywvani" path="res://Art/Items/crown.png" id="26_ohuo7"]
+[ext_resource type="Texture2D" uid="uid://eisu1iuslh5i" path="res://Art/Items/tortilla/tortilla2.png" id="27_ihphd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ndupr"]
 atlas = ExtResource("2_inhg5")
@@ -1154,6 +1155,33 @@ animations = [{
 radius = 9.0
 height = 24.0
 
+[sub_resource type="Animation" id="Animation_cu6lw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crown:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -17)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tortilla1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, -23)]
+}
+
 [sub_resource type="Animation" id="Animation_0sx0k"]
 resource_name = "crown"
 length = 2.0
@@ -1170,20 +1198,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, -17), Vector2(0, -21)]
 }
-
-[sub_resource type="Animation" id="Animation_cu6lw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Crown:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tortilla1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -17)]
+"values": [Vector2(-4, -20), Vector2(-4, -23)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnoos"]
@@ -1238,6 +1263,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Crown" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -17)
 texture = ExtResource("26_ohuo7")
 
@@ -1246,5 +1272,11 @@ autoplay = "crown"
 libraries = {
 "": SubResource("AnimationLibrary_bnoos")
 }
+
+[node name="Tortilla1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4, -23)
+scale = Vector2(0.105625, 0.105625)
+texture = ExtResource("27_ihphd")
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

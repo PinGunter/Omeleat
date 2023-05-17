@@ -14,6 +14,7 @@ func instantiate_players(positions : Dictionary):
 			player_instance.position = positions[player]
 			player_instances[player] = player_instance
 			
+	player_instances[0].receive_crown()
 			
 func get_players():
 	return player_instances

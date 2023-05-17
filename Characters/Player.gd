@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var controller : int
 @export var character : String
-
+@export var has_crown: bool = false
 signal stomped(me: int , enemy: int)
 
 
@@ -17,7 +17,7 @@ const MAX_WALL_JUMPS : int = 1
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var down_rays : Array = [$DownRay,$DownRay2,$DownRay3]
 @onready var stun_timer : Timer = $StunTimer
-
+@onready var crown = $Tortilla1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -30,6 +30,7 @@ var is_on_player : bool = false
 var is_top_player: bool = false
 var last_player_stomped: int
 var stunned: bool = false
+
 
 func is_colliding_close(ray : RayCast2D):
 	if (ray.is_colliding()):
@@ -170,3 +171,12 @@ func get_stomped():
 func _on_stun_timer_timeout():
 	scale.y = 1
 	stunned = false
+
+func receive_crown():
+	has_crown = true
+	crown.visible = true
+
+func lose_crown():
+	has_crown = false
+	crown.visible = false
+	
