@@ -12,9 +12,9 @@ func instantiate_players(positions : Dictionary):
 			player_instance.set("controller",player)
 			player_instance.set("character", GameStorage.get_players()[player][0])
 			player_instance.position = positions[player]
+			player_instance.add_to_group("players")
 			player_instances[player] = player_instance
 			
-	player_instances[0].receive_crown()
 			
 func get_players():
 	return player_instances

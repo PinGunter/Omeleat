@@ -23,3 +23,9 @@ func on_stomped(who: int, enemy : int): # depending on the level it works in one
 		players[who].receive_crown()
 	screen_shaker.shake()
 	players[enemy].get_stomped()
+
+
+func _on_tortilla_entered(body):
+	if body.is_in_group("players"):
+		body.receive_crown()
+		$Tortilla1.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=175 format=3 uid="uid://dsxul064ovfgj"]
+[gd_scene load_steps=174 format=3 uid="uid://dsxul064ovfgj"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_hmhi8"]
 [ext_resource type="Texture2D" uid="uid://cpr7nnv28c0b5" path="res://Art/Main Characters/Ninja Frog/Fall (32x32).png" id="2_1oqnx"]
@@ -25,8 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://c4x63ynbk7gtk" path="res://Art/Main Characters/Virtual Guy/Wall Jump (32x32).png" id="13_6sg4r"]
 [ext_resource type="Texture2D" uid="uid://de5q5a6a4aevt" path="res://Art/Main Characters/Pink Man/Wall Jump (32x32).png" id="13_i471c"]
 [ext_resource type="Texture2D" uid="uid://cqu4hkmqnu4j4" path="res://Art/Main Characters/Mask Dude/Wall Jump (32x32).png" id="13_nkjud"]
-[ext_resource type="Texture2D" uid="uid://b8movu6ywvani" path="res://Art/Items/crown.png" id="26_ohuo7"]
-[ext_resource type="Texture2D" uid="uid://eisu1iuslh5i" path="res://Art/Items/tortilla/tortilla2.png" id="27_ihphd"]
+[ext_resource type="Texture2D" uid="uid://eisu1iuslh5i" path="res://Art/Items/tortilla/tortilla2.png" id="26_o47uk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ndupr"]
 atlas = ExtResource("2_inhg5")
@@ -1265,7 +1264,6 @@ one_shot = true
 [node name="Crown" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -17)
-texture = ExtResource("26_ohuo7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "crown"
@@ -1277,6 +1275,6 @@ libraries = {
 visible = false
 position = Vector2(-4, -23)
 scale = Vector2(0.105625, 0.105625)
-texture = ExtResource("27_ihphd")
+texture = ExtResource("26_o47uk")
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

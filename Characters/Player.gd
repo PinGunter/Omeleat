@@ -12,7 +12,7 @@ const DOUBLE_JUMP_VELOCITY : float = -300.0
 const WALL_SLIDE_ACCELERATION : float = 5.0
 const MAX_WALL_SLIDE_SPEED : float = 100.0
 const MAX_JUMPS : int = 2
-const MAX_WALL_JUMPS : int = 1
+const MAX_WALL_JUMPS : int = 999
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var down_rays : Array = [$DownRay,$DownRay2,$DownRay3]
