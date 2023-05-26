@@ -6,7 +6,6 @@ var shake_strength : float = 0.0
 
 var rng = RandomNumberGenerator.new()
 @onready var camera : Camera2D = get_viewport().get_camera_2d()
-@onready var timer = $Timer
 
 func _ready():
 	var scr_sk = ConfigLoader.get_config()["screen_shake"]

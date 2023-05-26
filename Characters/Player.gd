@@ -180,3 +180,5 @@ func lose_crown():
 	has_crown = false
 	crown.visible = false
 	
+func has_object():
+	return has_crown
