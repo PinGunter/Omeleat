@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var controller : int
 @export var character : String
 @export var has_crown: bool = false
+@export var stomp_needs_press : bool = true
+@export_range(0,200,10) var slowness : int = 0
 signal stomped(me: int , enemy: int)
 
 
@@ -65,7 +67,7 @@ func _physics_process(delta):
 			if is_action_just_pressed("jump") and wall_jumps > 0:
 				wall_jump()
 		else:
-			if is_on_player and is_action_just_pressed("jump"):
+			if is_on_player and (not stomp_needs_press or ( stomp_needs_press and is_action_just_pressed("jump"))):
 				stomp()
 			elif is_action_just_pressed("jump") and jumps > 0:
 				double_jump()
@@ -92,7 +94,7 @@ func _physics_process(delta):
 	direction = get_vector("left", "right", "up", "down")
 	
 	if direction:
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * (SPEED - slowness)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
