@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://co0oogw2imid3"]
+
+[ext_resource type="Script" path="res://UI/winner_banner.gd" id="1_hiq3y"]
+[ext_resource type="Texture2D" uid="uid://b2co7y0uhqkr7" path="res://Art/Menu/win banner.png" id="1_yupaq"]
+[ext_resource type="Texture2D" uid="uid://bfj7q0glx2jtn" path="res://Art/Main Characters/Ninja Frog/icon.png" id="2_uh4l3"]
+[ext_resource type="Texture2D" uid="uid://b16elqx8w8s54" path="res://Art/Main Characters/Pink Man/icon.png" id="3_mndan"]
+[ext_resource type="Texture2D" uid="uid://fg5nq4vo1k3j" path="res://Art/Main Characters/Virtual Guy/icon.png" id="4_cxpcx"]
+[ext_resource type="Texture2D" uid="uid://5t6uxdvbvlqx" path="res://Art/Main Characters/Mask Dude/icon.png" id="5_w00xj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwi7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uh4l3")
+}],
+"loop": true,
+"name": &"froggy",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mndan")
+}],
+"loop": true,
+"name": &"pink_guy",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cxpcx")
+}],
+"loop": true,
+"name": &"very_real",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_w00xj")
+}],
+"loop": true,
+"name": &"wilding",
+"speed": 0.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sk8oq"]
+emission_shape = 2
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0, 1, 0.984314, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="Animation" id="Animation_0r2q3"]
+resource_name = "winning"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.0796601, 6.72716),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aqmut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_btoce"]
+_data = {
+"RESET": SubResource("Animation_aqmut"),
+"winning": SubResource("Animation_0r2q3")
+}
+
+[node name="WinnerBanner" type="Node2D"]
+visible = false
+script = ExtResource("1_hiq3y")
+metadata/_edit_group_ = true
+
+[node name="WinBanner" type="Sprite2D" parent="."]
+texture = ExtResource("1_yupaq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-137, 3)
+scale = Vector2(4.05, 4.05)
+sprite_frames = SubResource("SpriteFrames_mwi7e")
+animation = &"wilding"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-153, -2)
+emitting = false
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_sk8oq")
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(5, -3)
+emitting = false
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_sk8oq")
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(190, -5)
+emitting = false
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_sk8oq")
+randomness = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_btoce")
+}

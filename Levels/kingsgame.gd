@@ -16,6 +16,7 @@ var positions = {
 @onready var round_timer_text = $roundTimeNode/roundTime
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
+@onready var winner_banner = $WinnerBanner
 
 var slowness = 50
 var players = {}
@@ -55,10 +56,14 @@ func _on_tortilla_entered(body):
 		$Tortilla1.queue_free()
 
 func end_game():
-	print("Player 0: " + str(points[0]))
-	print("Player 1: " + str(points[1]))
+	var winners = []
+	for p in players:
+		if points[p] == max_points:
+			winners.push_back(p)
 	timer.stop()
-	round_timer_text.set("text", "[center] GAME OVER [/center]")
+	round_timer_text.set("text", "")
+	if winners.size() == 1:
+		winner_banner.set_winner(GameStorage.get_players()[winners[0]][0])
 
 func update_winner():
 	for p in players:
