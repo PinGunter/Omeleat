@@ -27,6 +27,11 @@ var player_points_scene = preload("res://UI/player_points.tscn")
 var player_points = {}
 
 func _ready():
+	if ConfigLoader.get_config()["volume"] == 0:
+		$bgMusic.volume_db = -80
+	else:
+		$bgMusic.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
+		
 	player_manager.set("needs_pressing", stomping_needs_press)
 	player_manager.instantiate_players(positions)
 	players = player_manager.get_players()
@@ -46,12 +51,14 @@ func on_stomped(who: int, enemy : int): # depending on the level it works in one
 	if players[enemy].get("has_crown"):
 		players[enemy].lose_crown()
 		players[who].receive_crown()
-	screen_shaker.shake()
+		screen_shaker.shake()
+		$pickup.play()
 	players[enemy].get_stomped()
 
 
 func _on_tortilla_entered(body):
 	if body.is_in_group("players"):
+		$pickup.play()
 		body.receive_crown()
 		$Tortilla1.queue_free()
 
@@ -94,3 +101,7 @@ func _on_timer_timeout():
 	if game_duration <= 0:
 		animation_player.stop()
 		end_game()
+
+
+func _on_audio_finished():
+	$bgMusic.play()

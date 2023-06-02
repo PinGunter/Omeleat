@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bp10541gk11v8"
+path="res://.godot/imported/Louie Zong - bass boss.mp3-d389e254c18d848a00ad38a97b9402bc.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/Louie Zong - bass boss.mp3"
+dest_files=["res://.godot/imported/Louie Zong - bass boss.mp3-d389e254c18d848a00ad38a97b9402bc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

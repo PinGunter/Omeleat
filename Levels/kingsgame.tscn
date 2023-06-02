@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cetayu33eehh"]
+[gd_scene load_steps=18 format=3 uid="uid://cetayu33eehh"]
 
 [ext_resource type="Texture2D" uid="uid://v3talrq2rbgc" path="res://Art/Terrain/Terrain (16x16).png" id="1_38ni8"]
 [ext_resource type="Script" path="res://Levels/kingsgame.gd" id="1_buwa2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://eisu1iuslh5i" path="res://Art/Items/tortilla/tortilla2.png" id="6_3nqpc"]
 [ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="7_8714u"]
 [ext_resource type="PackedScene" uid="uid://co0oogw2imid3" path="res://UI/winner_banner.tscn" id="8_82qvd"]
+[ext_resource type="AudioStream" uid="uid://bp10541gk11v8" path="res://Art/Music/Louie Zong - bass boss.mp3" id="9_vmi5x"]
+[ext_resource type="AudioStream" uid="uid://epwco8otxroc" path="res://Art/Music/pickup.mp3" id="10_7d8hq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88agt"]
 texture = ExtResource("1_38ni8")
@@ -578,7 +580,6 @@ _data = {
 
 [node name="KingsGame" type="Node2D"]
 script = ExtResource("1_buwa2")
-game_duration = 10
 slowness_mode = true
 stomping_needs_press = false
 
@@ -645,5 +646,13 @@ autostart = true
 [node name="WinnerBanner" parent="." instance=ExtResource("8_82qvd")]
 position = Vector2(640, 319)
 
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_vmi5x")
+autoplay = true
+
+[node name="pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_7d8hq")
+
 [connection signal="body_entered" from="Tortilla1/tortillaArea2d" to="." method="_on_tortilla_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="bgMusic" to="." method="_on_audio_finished"]
