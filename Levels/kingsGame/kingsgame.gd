@@ -19,6 +19,7 @@ var positions = {
 @onready var winner_banner = $WinnerBanner
 @onready var end_timer = $roundEndTimer
 
+var has_drawn = false
 var slowness = 50
 var players = {}
 var points = {0: 0, 1: 0, 2: 0, 3:0}
@@ -75,7 +76,10 @@ func end_game():
 		GameStorage.update_points(winners[0],GameStorage.get_player_points(winners[0])+1)
 		end_timer.start()
 	else: # draw
-		pass
+		has_drawn = true
+		end_timer.start()
+		animation_player.play("draw_banner")
+		
 
 func update_winner():
 	for p in players:
@@ -113,4 +117,7 @@ func _on_audio_finished():
 
 
 func _on_round_timer_end():
-	SceneTransition.change_scene("res://Levels/character_selection.tscn")
+	if has_drawn:
+		SceneTransition.change_scene("res://Levels/kingsGame/draw_mode.tscn")
+	else:
+		SceneTransition.change_scene("res://Levels/character_selection.tscn")
