@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 @export var controller : int
 @export var character : String
-
+@export var has_crown: bool = false
+@export var stomp_needs_press : bool = true
+@export_range(0,200,10) var slowness : int = 0
 signal stomped(me: int , enemy: int)
 
 
@@ -12,12 +14,12 @@ const DOUBLE_JUMP_VELOCITY : float = -300.0
 const WALL_SLIDE_ACCELERATION : float = 5.0
 const MAX_WALL_SLIDE_SPEED : float = 100.0
 const MAX_JUMPS : int = 2
-const MAX_WALL_JUMPS : int = 1
+const MAX_WALL_JUMPS : int = 999
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var down_rays : Array = [$DownRay,$DownRay2,$DownRay3]
 @onready var stun_timer : Timer = $StunTimer
-
+@onready var crown = $Tortilla1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -30,6 +32,7 @@ var is_on_player : bool = false
 var is_top_player: bool = false
 var last_player_stomped: int
 var stunned: bool = false
+
 
 func is_colliding_close(ray : RayCast2D):
 	if (ray.is_colliding()):
@@ -64,7 +67,7 @@ func _physics_process(delta):
 			if is_action_just_pressed("jump") and wall_jumps > 0:
 				wall_jump()
 		else:
-			if is_on_player and is_action_just_pressed("jump"):
+			if is_on_player and (not stomp_needs_press or ( stomp_needs_press and is_action_just_pressed("jump"))):
 				stomp()
 			elif is_action_just_pressed("jump") and jumps > 0:
 				double_jump()
@@ -91,7 +94,7 @@ func _physics_process(delta):
 	direction = get_vector("left", "right", "up", "down")
 	
 	if direction:
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * (SPEED - slowness)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -170,3 +173,14 @@ func get_stomped():
 func _on_stun_timer_timeout():
 	scale.y = 1
 	stunned = false
+
+func receive_crown():
+	has_crown = true
+	crown.visible = true
+
+func lose_crown():
+	has_crown = false
+	crown.visible = false
+	
+func has_object():
+	return has_crown

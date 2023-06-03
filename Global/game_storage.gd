@@ -31,6 +31,10 @@ func update_points(player: int, new_points : int) -> void:
 	if player >= 0 and player <= 4:
 		players[player][1] = new_points
 		
+
+func get_player_points(player: int) -> int:
+	return players[player][1]
+
 func next_round() -> bool:
 	current_round += 1
 	if current_round > total_rounds:

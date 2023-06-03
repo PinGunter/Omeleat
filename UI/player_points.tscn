@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn3kq6hnn2em1"]
+
+[ext_resource type="Script" path="res://UI/player_points.gd" id="1_1ttct"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="1_dvoop"]
+[ext_resource type="Texture2D" uid="uid://bfj7q0glx2jtn" path="res://Art/Main Characters/Ninja Frog/icon.png" id="1_q3i31"]
+[ext_resource type="Texture2D" uid="uid://b16elqx8w8s54" path="res://Art/Main Characters/Pink Man/icon.png" id="2_1qu7m"]
+[ext_resource type="Texture2D" uid="uid://ccee6at3rgmgg" path="res://Art/Items/tortilla/tortilla1.png" id="2_obx3h"]
+[ext_resource type="Texture2D" uid="uid://fg5nq4vo1k3j" path="res://Art/Main Characters/Virtual Guy/icon.png" id="3_c6iih"]
+[ext_resource type="Texture2D" uid="uid://5t6uxdvbvlqx" path="res://Art/Main Characters/Mask Dude/icon.png" id="4_jyonn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yn7yn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q3i31")
+}],
+"loop": true,
+"name": &"froggy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1qu7m")
+}],
+"loop": true,
+"name": &"pink_guy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_c6iih")
+}],
+"loop": true,
+"name": &"very_real",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jyonn")
+}],
+"loop": true,
+"name": &"wilding",
+"speed": 0.0
+}]
+
+[node name="player_points" type="Node2D"]
+script = ExtResource("1_1ttct")
+
+[node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(-19, 0)
+sprite_frames = SubResource("SpriteFrames_yn7yn")
+animation = &"very_real"
+
+[node name="point" type="RichTextLabel" parent="."]
+offset_left = 13.0
+offset_top = -8.0
+offset_right = 53.0
+offset_bottom = 24.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_dvoop")
+text = "0"
+
+[node name="winner" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(64, -2)
+scale = Vector2(0.135, 0.135)
+texture = ExtResource("2_obx3h")
