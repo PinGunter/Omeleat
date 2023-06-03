@@ -25,6 +25,7 @@ var max_points = 10
 var current_max = 0
 var player_points_scene = preload("res://UI/player_points.tscn")
 var player_points = {}
+var game_finished = false
 
 func _ready():
 	if ConfigLoader.get_config()["volume"] == 0:
@@ -33,7 +34,7 @@ func _ready():
 		$bgMusic.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
 		
 	player_manager.set("needs_pressing", stomping_needs_press)
-	player_manager.instantiate_players(positions)
+	player_manager.instantiate_draw_players(positions)
 	players = player_manager.get_players()
 	var i=0
 	for p in players:
@@ -63,19 +64,21 @@ func _on_tortilla_entered(body):
 		$Tortilla1.queue_free()
 
 func end_game(winner : int):
+	game_finished = true
 	winner_banner.set_winner(GameStorage.get_players()[winner][0])
 	GameStorage.update_points(winner,GameStorage.get_player_points(winner)+1)
 	end_timer.start()
 	
 
 func update_winner():
-	for p in players:
-		if points[p] == current_max:
-			player_points[p].set_winner(true)
-			if slowness_mode:
-				players[p].set("slowness", slowness)
-		else:
-			player_points[p].set_winner(false)
+	if not game_finished:
+		for p in players:
+			if points[p] == current_max:
+				player_points[p].set_winner(true)
+				if slowness_mode:
+					players[p].set("slowness", slowness)
+			else:
+				player_points[p].set_winner(false)
 		
 
 func _on_timer_timeout():
@@ -98,4 +101,5 @@ func _on_audio_finished():
 
 
 func _on_round_timer_end():
+	GameStorage.set_drawers([])
 	SceneTransition.change_scene("res://Levels/character_selection.tscn")

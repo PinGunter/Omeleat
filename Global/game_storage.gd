@@ -12,6 +12,14 @@ var players = {
 	3: {0: "no_character", 1: 0},
 }
 
+var drawers = [] # ids of the players that have drawn in a game
+
+func get_drawers() -> Array:
+	return drawers
+
+func set_drawers(new_dr : Array) -> void:
+	drawers = new_dr
+
 func get_players() -> Dictionary:
 	return players
 	

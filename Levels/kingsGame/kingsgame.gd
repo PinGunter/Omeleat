@@ -78,6 +78,7 @@ func end_game():
 	else: # draw
 		has_drawn = true
 		end_timer.start()
+		GameStorage.set_drawers(winners)
 		animation_player.play("draw_banner")
 		
 
