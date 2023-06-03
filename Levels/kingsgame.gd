@@ -17,6 +17,7 @@ var positions = {
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
 @onready var winner_banner = $WinnerBanner
+@onready var end_timer = $roundEndTimer
 
 var slowness = 50
 var players = {}
@@ -71,6 +72,10 @@ func end_game():
 	round_timer_text.set("text", "")
 	if winners.size() == 1:
 		winner_banner.set_winner(GameStorage.get_players()[winners[0]][0])
+		GameStorage.update_points(winners[0],GameStorage.get_player_points(winners[0])+1)
+		end_timer.start()
+	else: # draw
+		pass
 
 func update_winner():
 	for p in players:
@@ -105,3 +110,7 @@ func _on_timer_timeout():
 
 func _on_audio_finished():
 	$bgMusic.play()
+
+
+func _on_round_timer_end():
+	SceneTransition.change_scene("res://Levels/character_selection.tscn")

@@ -653,6 +653,11 @@ autoplay = true
 [node name="pickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_7d8hq")
 
+[node name="roundEndTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="Tortilla1/tortillaArea2d" to="." method="_on_tortilla_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="bgMusic" to="." method="_on_audio_finished"]
+[connection signal="timeout" from="roundEndTimer" to="." method="_on_round_timer_end"]
