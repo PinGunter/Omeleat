@@ -15,7 +15,7 @@ var froggy = "froggy"
 var wilding = "wilding"
 var pink_guy = "pink_guy"
 var very_real = "very_real"
-var base_sound = -40;
+
 
 var player_chosen = {
 	0: no_character,
@@ -32,7 +32,7 @@ func _ready():
 	if ConfigLoader.get_config()["volume"] == 0:
 		$bgMusic.volume_db = -80
 	else:
-		$bgMusic.volume_db = (1 - ConfigLoader.get_config()["volume"]) * base_sound
+		$bgMusic.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
 	update_rounds_text(rounds)
 
 func _input(event):

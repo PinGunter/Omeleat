@@ -2,7 +2,7 @@ extends Node
 
 const FILE_NAME = "user://settings.json"
 
-var config = {"fullscreen" : false, "volume" : 1.0}
+var config = {"fullscreen" : false, "volume" : 1.0, "screen_shake": 1}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_config()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b142pqrdsi3q5"
+path="res://.godot/imported/Louie Zong - tutorial time!.mp3-4bae17ba63473d7f2d757a01c5349d7d.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/Louie Zong - tutorial time!.mp3"
+dest_files=["res://.godot/imported/Louie Zong - tutorial time!.mp3-4bae17ba63473d7f2d757a01c5349d7d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
