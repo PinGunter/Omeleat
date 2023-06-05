@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://p3bc4spgvgrw"]
+
+[ext_resource type="Script" path="res://Levels/Caja.gd" id="1_ok8yy"]
+[ext_resource type="Texture2D" uid="uid://cd15ji54hpd1a" path="res://Art/Traps/Rock Head/Bottom Hit (42x42).png" id="2_wyuxk"]
+[ext_resource type="Texture2D" uid="uid://1jru7mj87ln1" path="res://Art/Traps/Rock Head/Idle.png" id="3_6ex0i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx0bu"]
+atlas = ExtResource("2_wyuxk")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr2se"]
+atlas = ExtResource("2_wyuxk")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_286od"]
+atlas = ExtResource("2_wyuxk")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw0po"]
+atlas = ExtResource("2_wyuxk")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7pbf"]
+atlas = ExtResource("3_6ex0i")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fmx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx0bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr2se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_286od")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw0po")
+}],
+"loop": true,
+"name": &"BottomHit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7pbf")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an1n5"]
+size = Vector2(48, 48)
+
+[node name="Caja" type="StaticBody2D"]
+script = ExtResource("1_ok8yy")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_5fmx0")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_an1n5")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

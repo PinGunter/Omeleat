@@ -87,7 +87,7 @@ func on_cursor_clicked(device, where):
 			elif f.get("player") == device:
 				f.deselect()
 				
-	if (check_selected() > 1):
+	if (check_selected() >= 1):
 		next_btn.visible = true
 	else:
 		next_btn.visible = false
@@ -109,8 +109,8 @@ func _on_button_action(what):
 		SceneTransition.change_scene("res://UI/main_menu.tscn")
 	elif what == "next":
 		update_global_selection()
-		if GameStorage.get_active_players().size() > 1:
-			SceneTransition.change_scene("res://Levels/level_1.tscn")
+		if GameStorage.get_active_players().size() >= 1:
+			SceneTransition.change_scene("res://Levels/BoxLevel.tscn")
 	elif what == "removeRounds":
 		rounds = max(1,rounds-1)
 		update_rounds_text(rounds)

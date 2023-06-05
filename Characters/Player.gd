@@ -20,6 +20,7 @@ var wall_jumps : int = MAX_WALL_JUMPS
 var direction : Vector2 = Vector2.ZERO
 var was_in_air : bool = false
 var current_animation : String = "idle"
+var crashed : bool = false
 
 func _physics_process(delta):
 	
@@ -58,7 +59,9 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = get_vector("left", "right", "up", "down")
 	
-	if direction:
+	if crashed:
+		velocity.x = 0
+	elif direction:
 		velocity.x = direction.x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -103,6 +106,11 @@ func wall_slide(delta : float):
 
 func fall():
 	current_animation = "fall"
+
+func aplastar():
+	self.set_scale(Vector2(1.0, 0.1))
+	velocity.x = 0
+	crashed = true
 
 
 func nextToWall():
