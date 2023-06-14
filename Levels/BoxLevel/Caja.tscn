@@ -1,28 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://p3bc4spgvgrw"]
+[gd_scene load_steps=11 format=3 uid="uid://7l0wfn7nk8f6"]
 
-[ext_resource type="Script" path="res://Levels/Caja.gd" id="1_ok8yy"]
-[ext_resource type="Texture2D" uid="uid://cd15ji54hpd1a" path="res://Art/Traps/Rock Head/Bottom Hit (42x42).png" id="2_wyuxk"]
-[ext_resource type="Texture2D" uid="uid://1jru7mj87ln1" path="res://Art/Traps/Rock Head/Idle.png" id="3_6ex0i"]
+[ext_resource type="Script" path="res://Levels/BoxLevel/Caja.gd" id="1_wilps"]
+[ext_resource type="Texture2D" uid="uid://cd15ji54hpd1a" path="res://Art/Traps/Rock Head/Bottom Hit (42x42).png" id="2_540wc"]
+[ext_resource type="Texture2D" uid="uid://bbe2xw4stavx3" path="res://UI/tortilla-box.png" id="3_hawka"]
+[ext_resource type="AudioStream" uid="uid://bavmlthxyjjlu" path="res://Art/Music/golpe_caja.mp3" id="4_scj42"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nx0bu"]
-atlas = ExtResource("2_wyuxk")
+atlas = ExtResource("2_540wc")
 region = Rect2(0, 0, 42, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr2se"]
-atlas = ExtResource("2_wyuxk")
+atlas = ExtResource("2_540wc")
 region = Rect2(42, 0, 42, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_286od"]
-atlas = ExtResource("2_wyuxk")
+atlas = ExtResource("2_540wc")
 region = Rect2(84, 0, 42, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bw0po"]
-atlas = ExtResource("2_wyuxk")
+atlas = ExtResource("2_540wc")
 region = Rect2(126, 0, 42, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b7pbf"]
-atlas = ExtResource("3_6ex0i")
-region = Rect2(0, 0, 42, 42)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5fmx0"]
 animations = [{
@@ -45,7 +42,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b7pbf")
+"texture": ExtResource("3_hawka")
 }],
 "loop": true,
 "name": &"Idle",
@@ -53,10 +50,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_an1n5"]
-size = Vector2(48, 48)
+size = Vector2(46, 44)
 
 [node name="Caja" type="StaticBody2D"]
-script = ExtResource("1_ok8yy")
+script = ExtResource("1_wilps")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -67,5 +64,8 @@ autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_an1n5")
+
+[node name="smashBox" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_scj42")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,12 +1,16 @@
 extends StaticBody2D
 
-@export var velocity : float = 50
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var velocity : float = 2
+#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 100
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 var hasCollided : bool = false
 var onFloor : bool = false
 var animationPlayed : String = "Idle"
+signal smash(player : int) 
+
+
 
 func _physics_process(delta):
 	velocity += gravity * delta
@@ -16,14 +20,16 @@ func _physics_process(delta):
 			var colliderName = collision.get_collider().get_name()
 			if(colliderName == "TileMap" or colliderName.begins_with("@Caja@") or colliderName.begins_with("Caja")):
 				onFloor = true
-			elif(colliderName == "Player" and !onFloor):
-				collision.get_collider().aplastar()
+				$smashBox.play()
+			elif(collision.get_collider().is_in_group("players") and !onFloor):
+				smash.emit(collision.get_collider().get("controller"))
+				
 
-func set_velocity(newVelocity: float):
-	velocity = newVelocity
+func set_gravity(newGravity: float):
+	gravity = newGravity
 
-func get_velocity() -> float:
-	return velocity
+func get_gravity() -> float:
+	return gravity
 
 
 
