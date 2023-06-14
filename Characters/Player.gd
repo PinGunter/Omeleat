@@ -33,6 +33,7 @@ var is_on_player : bool = false
 var is_top_player: bool = false
 var last_player_stomped: int
 var stunned: bool = false
+var og_scale : Vector2 = Vector2(1,1)
 
 
 func is_colliding_close(ray : RayCast2D):
@@ -174,14 +175,15 @@ func stomp():
 	velocity.y = JUMP_VELOCITY * 1.35
 	stomped.emit(controller, last_player_stomped)
 
-func get_stomped():
+func get_stomped(original_scale: Vector2):
+	og_scale = original_scale
 	print(character + " is now stomped")
 	stun_timer.start()
 	scale.y = 0.7
 	stunned = true
 		
 func _on_stun_timer_timeout():
-	scale.y = 1
+	scale = og_scale
 	stunned = false
 
 func receive_crown():

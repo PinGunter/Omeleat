@@ -54,7 +54,7 @@ func stomped(who: int, enemy : int): # depending on the level it works in one wa
 		players[who].receive_crown()
 		screen_shaker.shake()
 		$pickup.play()
-	players[enemy].get_stomped()
+	players[enemy].get_stomped(Vector2(1,1))
 
 
 func _on_tortilla_entered(body):
