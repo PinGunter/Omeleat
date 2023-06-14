@@ -55,13 +55,18 @@ func on_stomped(who: int, enemy : int): # depending on the level it works in one
 		players[who].receive_crown()
 		screen_shaker.shake()
 		$pickup.play()
+		if slowness_mode:
+			players[enemy].set("slowness", 0)
+			players[who].set("slowness", slowness)
 	players[enemy].get_stomped()
-
+	
 
 func _on_tortilla_entered(body):
 	if body.is_in_group("players"):
 		$pickup.play()
 		body.receive_crown()
+		if slowness_mode:
+			body.set("slowness", slowness)
 		$Tortilla1.queue_free()
 
 func end_game():
@@ -86,8 +91,6 @@ func update_winner():
 	for p in players:
 		if points[p] == max_points:
 			player_points[p].set_winner(true)
-			if slowness_mode:
-				players[p].set("slowness", slowness)
 		else:
 			player_points[p].set_winner(false)
 		
