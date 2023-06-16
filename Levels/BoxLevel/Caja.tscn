@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://7l0wfn7nk8f6"]
+[gd_scene load_steps=12 format=3 uid="uid://7l0wfn7nk8f6"]
 
 [ext_resource type="Script" path="res://Levels/BoxLevel/Caja.gd" id="1_wilps"]
 [ext_resource type="Texture2D" uid="uid://cd15ji54hpd1a" path="res://Art/Traps/Rock Head/Bottom Hit (42x42).png" id="2_540wc"]
 [ext_resource type="Texture2D" uid="uid://bbe2xw4stavx3" path="res://UI/tortilla-box.png" id="3_hawka"]
 [ext_resource type="AudioStream" uid="uid://bavmlthxyjjlu" path="res://Art/Music/golpe_caja.mp3" id="4_scj42"]
+[ext_resource type="AudioStream" uid="uid://dfopp8vuc8qsn" path="res://Art/Music/muerteFortnite.mp3" id="5_y6mkt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nx0bu"]
 atlas = ExtResource("2_540wc")
@@ -67,5 +68,8 @@ shape = SubResource("RectangleShape2D_an1n5")
 
 [node name="smashBox" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_scj42")
+
+[node name="muerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_y6mkt")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -4,7 +4,7 @@ const INITIAL_SPAWN_INTERVAL = 2.0
 const SPAWN_INTERVAL_MAX = 0.5
 const SPAWN_INCREMENTAL = 0.05
 const INCREMENTAL_GRAVITY = 10
-const MAX_BOXES_PER_COLUMN = 3
+const MAX_BOXES_PER_COLUMN = 14
 
 const NUM_COLUMNS = 8
 
@@ -69,8 +69,8 @@ func spawn_box():
 	var minNumBoxesInColum = boxesPerColumn.min()
 	if minNumBoxesInColum == MAX_BOXES_PER_COLUMN:
 		var box : Node2D = box_scene.instantiate()
-		box.global_position = Vector2(NUM_COLUMNS/2 * 50 + 449, -1000)
-		box.scale = Vector2(10,10)
+		box.global_position = Vector2(NUM_COLUMNS/2 * 50 + 470, -1000)
+		box.scale = Vector2(8.5,8.5)
 		box.smash.connect(smash_player)
 		add_child(box)
 		endGame = true
@@ -79,14 +79,12 @@ func spawn_box():
 		while((boxesPerColumn[column] > minNumBoxesInColum + 2) or (boxesPerColumn[column] >= MAX_BOXES_PER_COLUMN)):
 			column = randi_range(0, NUM_COLUMNS - 1)
 		var box : Node2D = box_scene.instantiate()
-		box.global_position = Vector2(column * 50 + 449, -100)
+		box.global_position = Vector2(column * 50 + 490, -100)
 		box.set_gravity(gravityBox)
 		gravityBox += INCREMENTAL_GRAVITY
 		box.smash.connect(smash_player)
 		add_child(box)
 		boxesPerColumn[column] += 1
-		print("columna " + str(column))
-	print(boxesPerColumn)
 		
 func smash_player(player : int):
 	players[player].aplastar()

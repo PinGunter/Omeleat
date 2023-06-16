@@ -23,6 +23,7 @@ func _physics_process(delta):
 				$smashBox.play()
 			elif(collision.get_collider().is_in_group("players") and !onFloor):
 				smash.emit(collision.get_collider().get("controller"))
+				$muerte.play()
 				
 
 func set_gravity(newGravity: float):
