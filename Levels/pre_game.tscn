@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://nt8luu0dq7vj"]
+[gd_scene load_steps=8 format=3 uid="uid://nt8luu0dq7vj"]
 
 [ext_resource type="Script" path="res://Levels/pre_game.gd" id="1_fdymx"]
 [ext_resource type="Texture2D" uid="uid://cjw0kanfqrrfp" path="res://Art/Background/Green.png" id="1_q5sw0"]
 [ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="3_25wfi"]
+[ext_resource type="AudioStream" uid="uid://b7nuabgls76n1" path="res://Art/Music/Louie Zong - sidewinder sands.mp3" id="4_l201c"]
 
 [sub_resource type="Animation" id="Animation_eq6ek"]
 resource_name = "transition"
@@ -83,5 +84,9 @@ text = "[center][/center]"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l201c")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7nuabgls76n1"
+path="res://.godot/imported/Louie Zong - sidewinder sands.mp3-ff36159358949d17edb0242a016a8896.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/Louie Zong - sidewinder sands.mp3"
+dest_files=["res://.godot/imported/Louie Zong - sidewinder sands.mp3-ff36159358949d17edb0242a016a8896.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
