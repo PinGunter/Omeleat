@@ -42,7 +42,6 @@ func _ready():
 	player_manager.instantiate_players(positions)
 	players = player_manager.get_players()
 	for i in range(players.size()):
-		players[i].stomped.connect(on_stomped)
 		players[i].scale = Vector2(1.5,1.5)
 	for i in range(NUM_COLUMNS):
 		boxesPerColumn.append(0)
@@ -116,11 +115,6 @@ func end_game():
 	$WinnerBanner.set_winner(winnerName)	
 	GameStorage.update_points(winnerId,GameStorage.get_player_points(winnerId)+1)
 	$roundEndTimer.start()
-
-
-func on_stomped(who: int, enemy : int): # depending on the level it works in one way or another (exchanging crown for example)
-	players[enemy].get_stomped(Vector2(1.5,1.5))
-
 
 func _on_round_end_timer_timeout():
 	SceneTransition.change_scene("res://Levels/character_selection.tscn")

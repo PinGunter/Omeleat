@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://nt8luu0dq7vj"]
+
+[ext_resource type="Script" path="res://Levels/pre_game.gd" id="1_fdymx"]
+[ext_resource type="Texture2D" uid="uid://cjw0kanfqrrfp" path="res://Art/Background/Green.png" id="1_q5sw0"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="3_25wfi"]
+[ext_resource type="AudioStream" uid="uid://b7nuabgls76n1" path="res://Art/Music/Louie Zong - sidewinder sands.mp3" id="4_l201c"]
+
+[sub_resource type="Animation" id="Animation_eq6ek"]
+resource_name = "transition"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2208, -1720)]
+}
+
+[sub_resource type="Animation" id="Animation_k3nmd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhxy6"]
+_data = {
+"RESET": SubResource("Animation_k3nmd"),
+"transition": SubResource("Animation_eq6ek")
+}
+
+[node name="pre_game" type="Node2D"]
+script = ExtResource("1_fdymx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 8.0
+offset_right = 3496.0
+offset_bottom = 2440.0
+texture = ExtResource("1_q5sw0")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "transition"
+libraries = {
+"": SubResource("AnimationLibrary_lhxy6")
+}
+
+[node name="nextgame" type="RichTextLabel" parent="."]
+offset_left = 72.0
+offset_top = 72.0
+offset_right = 592.0
+offset_bottom = 112.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_25wfi")
+theme_override_font_sizes/normal_font_size = 40
+text = "NEXT GAME:"
+fit_content = true
+scroll_active = false
+
+[node name="gameName" type="RichTextLabel" parent="."]
+offset_top = 312.0
+offset_right = 1280.0
+offset_bottom = 544.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_25wfi")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center][/center]"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l201c")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -87,7 +87,7 @@ func on_cursor_clicked(device, where):
 			elif f.get("player") == device:
 				f.deselect()
 				
-	if (check_selected() >= 1):
+	if (check_selected() > 1):
 		next_btn.visible = true
 	else:
 		next_btn.visible = false
@@ -110,7 +110,7 @@ func _on_button_action(what):
 	elif what == "next":
 		update_global_selection()
 		if GameStorage.get_active_players().size() >= 1:
-			SceneTransition.change_scene("res://Levels/post_round.tscn")
+			SceneTransition.change_scene("res://Levels/pre_game.tscn")
 	elif what == "removeRounds":
 		rounds = max(1,rounds-1)
 		update_rounds_text(rounds)
@@ -120,6 +120,7 @@ func _on_button_action(what):
 
 func update_rounds_text(r : int):
 	rounds_text.set("text", "[center]%s[/center]" % r)
+	GameStorage.set_total_rounds(r)
 	if r == 10:
 		$roundSelection/rightButton.visible = false
 		$roundSelection/rightButton.force_exit() # no se si dejarlo o no :)
