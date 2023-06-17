@@ -110,7 +110,7 @@ func _on_button_action(what):
 	elif what == "next":
 		update_global_selection()
 		if GameStorage.get_active_players().size() >= 1:
-			SceneTransition.change_scene(GameStorage.pick_next_game()[1])
+			SceneTransition.change_scene("res://Levels/pre_game.tscn")
 	elif what == "removeRounds":
 		rounds = max(1,rounds-1)
 		update_rounds_text(rounds)
