@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ulteqhqgvf8g"]
+
+[ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="1_hraa7"]
+
+[node name="winner" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1321.0
+offset_bottom = 752.0
+texture = ExtResource("1_hraa7")
+stretch_mode = 1

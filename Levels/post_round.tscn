@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://b234a7hmebsdu"]
+
+[ext_resource type="Script" path="res://Levels/post_round.gd" id="1_o1rfc"]
+[ext_resource type="Texture2D" uid="uid://dr5aldu7k530v" path="res://Art/Background/Purple.png" id="2_5k5hq"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="3_mdnpc"]
+
+[sub_resource type="Animation" id="Animation_cyobw"]
+resource_name = "transition"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-4724, -3518)]
+}
+
+[sub_resource type="Animation" id="Animation_875ra"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mskpg"]
+_data = {
+"RESET": SubResource("Animation_875ra"),
+"transition": SubResource("Animation_cyobw")
+}
+
+[node name="post_round" type="Node2D"]
+script = ExtResource("1_o1rfc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 6071.0
+offset_bottom = 4267.0
+texture = ExtResource("2_5k5hq")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "transition"
+libraries = {
+"": SubResource("AnimationLibrary_mskpg")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 294.0
+offset_top = 124.0
+offset_right = 1010.0
+offset_bottom = 261.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_mdnpc")
+theme_override_font_sizes/normal_font_size = 100
+text = "RANKING"
+fit_content = true
+scroll_active = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

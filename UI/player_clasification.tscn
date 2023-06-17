@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://idyh2ut8a1wq"]
+
+[ext_resource type="Texture2D" uid="uid://bfj7q0glx2jtn" path="res://Art/Main Characters/Ninja Frog/icon.png" id="1_kkdj8"]
+[ext_resource type="Script" path="res://UI/player_clasification.gd" id="1_olkop"]
+[ext_resource type="Texture2D" uid="uid://b16elqx8w8s54" path="res://Art/Main Characters/Pink Man/icon.png" id="3_f1guy"]
+[ext_resource type="Texture2D" uid="uid://fg5nq4vo1k3j" path="res://Art/Main Characters/Virtual Guy/icon.png" id="4_fwof6"]
+[ext_resource type="Texture2D" uid="uid://5t6uxdvbvlqx" path="res://Art/Main Characters/Mask Dude/icon.png" id="5_dqm8b"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="6_w686t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lsx0l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kkdj8")
+}],
+"loop": true,
+"name": &"froggy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f1guy")
+}],
+"loop": true,
+"name": &"pink_guy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fwof6")
+}],
+"loop": true,
+"name": &"very_real",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dqm8b")
+}],
+"loop": true,
+"name": &"wilding",
+"speed": 5.0
+}]
+
+[node name="player_clasification" type="Node2D"]
+script = ExtResource("1_olkop")
+
+[node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(96, 190)
+scale = Vector2(8.75, 8.75)
+sprite_frames = SubResource("SpriteFrames_lsx0l")
+animation = &"pink_guy"
+
+[node name="point" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_top = 294.0
+offset_right = 188.0
+offset_bottom = 394.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_w686t")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]0[/center]"
+fit_content = true
+scroll_active = false
