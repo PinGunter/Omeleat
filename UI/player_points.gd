@@ -11,6 +11,10 @@ func set_winner(is_winner: bool):
 
 func set_points(p : int):
 	$point.set("text", str(p))
+	
+func set_points_string(p : String):
+	$point.set("text", p)
+
 
 func _ready():
 	$icon.play(character)

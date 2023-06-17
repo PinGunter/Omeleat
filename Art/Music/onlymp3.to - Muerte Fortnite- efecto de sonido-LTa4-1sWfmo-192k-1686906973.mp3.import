@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fek15qiymvqq"
+path="res://.godot/imported/onlymp3.to - Muerte Fortnite- efecto de sonido-LTa4-1sWfmo-192k-1686906973.mp3-e85f7eac2112e1da2a4512e6ce7dfe14.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/onlymp3.to - Muerte Fortnite- efecto de sonido-LTa4-1sWfmo-192k-1686906973.mp3"
+dest_files=["res://.godot/imported/onlymp3.to - Muerte Fortnite- efecto de sonido-LTa4-1sWfmo-192k-1686906973.mp3-e85f7eac2112e1da2a4512e6ce7dfe14.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

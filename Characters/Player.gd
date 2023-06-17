@@ -14,7 +14,7 @@ const DOUBLE_JUMP_VELOCITY : float = -300.0
 const WALL_SLIDE_ACCELERATION : float = 5.0
 const MAX_WALL_SLIDE_SPEED : float = 100.0
 const MAX_JUMPS : int = 2
-const MAX_WALL_JUMPS : int = 999
+const MAX_WALL_JUMPS : int = 3
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var down_rays : Array = [$DownRay,$DownRay2,$DownRay3]
@@ -28,10 +28,12 @@ var wall_jumps : int = MAX_WALL_JUMPS
 var direction : Vector2 = Vector2.ZERO
 var was_in_air : bool = false
 var current_animation : String = "idle"
+var crashed : bool = false
 var is_on_player : bool = false
 var is_top_player: bool = false
 var last_player_stomped: int
 var stunned: bool = false
+var og_scale : Vector2 = Vector2(1,1)
 
 
 func is_colliding_close(ray : RayCast2D):
@@ -93,8 +95,10 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = get_vector("left", "right", "up", "down")
 	
-	if direction:
-		velocity.x = direction.x * (SPEED - slowness)
+	if crashed:
+		velocity.x = 0
+	elif direction:
+		velocity.x = direction.x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -141,6 +145,13 @@ func wall_slide(delta : float):
 func fall():
 	current_animation = "fall"
 
+func aplastar():
+	self.set_scale(Vector2(1.0, 0.1))
+	velocity.x = 0
+	crashed = true
+	queue_free()
+
+
 func nextToWall():
 	return nextToRightWall() or nextToLeftWall()
 
@@ -164,14 +175,15 @@ func stomp():
 	velocity.y = JUMP_VELOCITY * 1.35
 	stomped.emit(controller, last_player_stomped)
 
-func get_stomped():
+func get_stomped(original_scale: Vector2):
+	og_scale = original_scale
 	print(character + " is now stomped")
 	stun_timer.start()
 	scale.y = 0.7
 	stunned = true
 		
 func _on_stun_timer_timeout():
-	scale.y = 1
+	scale = og_scale
 	stunned = false
 
 func receive_crown():
