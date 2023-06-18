@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=3 uid="uid://dsxul064ovfgj"]
+[gd_scene load_steps=175 format=3 uid="uid://dsxul064ovfgj"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_hmhi8"]
 [ext_resource type="Texture2D" uid="uid://cpr7nnv28c0b5" path="res://Art/Main Characters/Ninja Frog/Fall (32x32).png" id="2_1oqnx"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://de5q5a6a4aevt" path="res://Art/Main Characters/Pink Man/Wall Jump (32x32).png" id="13_i471c"]
 [ext_resource type="Texture2D" uid="uid://cqu4hkmqnu4j4" path="res://Art/Main Characters/Mask Dude/Wall Jump (32x32).png" id="13_nkjud"]
 [ext_resource type="Texture2D" uid="uid://eisu1iuslh5i" path="res://Art/Items/tortilla/tortilla2.png" id="26_o47uk"]
+[ext_resource type="Texture2D" uid="uid://iedtwe5m8qp3" path="res://Art/Items/bomba.png" id="27_fu8yc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ndupr"]
 atlas = ExtResource("2_inhg5")
@@ -1278,5 +1279,9 @@ scale = Vector2(0.105625, 0.105625)
 texture = ExtResource("26_o47uk")
 
 [node name="Bomba" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2.38419e-07, -22)
+scale = Vector2(0.257813, 0.257813)
+texture = ExtResource("27_fu8yc")
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

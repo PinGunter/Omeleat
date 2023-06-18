@@ -1,15 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://pivjkisigdqh"]
+[gd_scene load_steps=16 format=3 uid="uid://pivjkisigdqh"]
 
 [ext_resource type="Texture2D" uid="uid://bv50rbph8a2v2" path="res://Art/Background/Brown.png" id="1_gpn0d"]
 [ext_resource type="Script" path="res://Levels/bombGame/bomb_game.gd" id="1_pvqd7"]
 [ext_resource type="Texture2D" uid="uid://v3talrq2rbgc" path="res://Art/Terrain/Terrain (16x16).png" id="2_dhhpy"]
 [ext_resource type="PackedScene" uid="uid://dvn2e453darus" path="res://Characters/player_manager.tscn" id="4_3ot3i"]
 [ext_resource type="PackedScene" uid="uid://ddchokbgyyrnp" path="res://Global/screen_shaker.tscn" id="5_yyhvb"]
-[ext_resource type="Texture2D" uid="uid://eisu1iuslh5i" path="res://Art/Items/tortilla/tortilla2.png" id="6_3q3sr"]
 [ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="7_22w3t"]
 [ext_resource type="PackedScene" uid="uid://co0oogw2imid3" path="res://UI/winner_banner.tscn" id="8_f4gix"]
 [ext_resource type="AudioStream" uid="uid://bp10541gk11v8" path="res://Art/Music/Louie Zong - bass boss.mp3" id="9_f7wo6"]
-[ext_resource type="AudioStream" uid="uid://epwco8otxroc" path="res://Art/Music/pickup.mp3" id="10_uw7hd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88agt"]
 texture = ExtResource("2_dhhpy")
@@ -513,42 +511,15 @@ texture = ExtResource("2_dhhpy")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_88agt")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mosw3"]
-size = Vector2(173.757, 165.714)
-
 [sub_resource type="Animation" id="Animation_sjlh3"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Tortilla1:position")
+tracks/0/path = NodePath("drawBanner:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(631, 327)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("roundTimeNode:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("drawBanner:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -574,34 +545,10 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_lvwni"]
 resource_name = "idle"
 loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Tortilla1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(631, 415), Vector2(632, 400)]
-}
 
 [sub_resource type="Animation" id="Animation_vyedg"]
 resource_name = "intense_timer"
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("roundTimeNode:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6221"]
 _data = {
@@ -634,42 +581,11 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="ScreenShaker" parent="." instance=ExtResource("5_yyhvb")]
 
-[node name="Tortilla1" type="Sprite2D" parent="."]
-position = Vector2(631, 327)
-scale = Vector2(0.175, 0.175)
-texture = ExtResource("6_3q3sr")
-metadata/_edit_group_ = true
-
-[node name="tortillaArea2d" type="Area2D" parent="Tortilla1"]
-
-[node name="tortillaCollision" type="CollisionShape2D" parent="Tortilla1/tortillaArea2d"]
-position = Vector2(48.5457, 31.7096)
-shape = SubResource("RectangleShape2D_mosw3")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_p6221")
 }
-
-[node name="roundTimeNode" type="Node2D" parent="."]
-position = Vector2(628, 139)
-metadata/_edit_group_ = true
-
-[node name="roundTime" type="RichTextLabel" parent="roundTimeNode"]
-offset_left = -17.0
-offset_top = -7.0
-offset_right = 40.0
-offset_bottom = 33.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("7_22w3t")
-theme_override_font_sizes/normal_font_size = 27
-bbcode_enabled = true
-text = "[center]60[/center]"
-scroll_active = false
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="WinnerBanner" parent="." instance=ExtResource("8_f4gix")]
 position = Vector2(640, 319)
@@ -678,9 +594,36 @@ position = Vector2(640, 319)
 stream = ExtResource("9_f7wo6")
 autoplay = true
 
-[node name="pickup" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_uw7hd")
-
 [node name="roundEndTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="bombTimers" type="Node" parent="."]
+
+[node name="bomb1" type="Timer" parent="bombTimers"]
+wait_time = 10.0
+one_shot = true
+
+[node name="bomb2" type="Timer" parent="bombTimers"]
+wait_time = 7.0
+one_shot = true
+
+[node name="bomb3" type="Timer" parent="bombTimers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="gracePeriod" type="Timer" parent="."]
+autostart = true
+
+[node name="graceText" type="RichTextLabel" parent="."]
+offset_left = 360.0
+offset_top = 213.0
+offset_right = 958.0
+offset_bottom = 305.0
+theme_override_fonts/normal_font = ExtResource("7_22w3t")
+theme_override_font_sizes/normal_font_size = 30
+text = "NEXT BOMB IN "
+fit_content = true
+scroll_active = false
+
+[connection signal="timeout" from="gracePeriod" to="." method="_on_grace_timer_tick"]

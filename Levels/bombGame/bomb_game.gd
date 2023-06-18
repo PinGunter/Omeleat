@@ -17,6 +17,8 @@ var positions = {
 @onready var animation_player = $AnimationPlayer
 @onready var winner_banner = $WinnerBanner
 @onready var end_timer = $roundEndTimer
+@onready var gracePeriodTimer = $gracePeriod
+@onready var gracePeriodText = $graceText
 
 var slowness = 50
 var players = {}
@@ -27,6 +29,9 @@ var player_points_scene = preload("res://UI/player_points.tscn")
 var player_points = {}
 var bomb_timers = {}
 var last_position = 0
+
+var gracePeriod = 6
+var currentGracePeriod = gracePeriod
 
 func _ready():
 	if ConfigLoader.get_config()["volume"] == 0:
@@ -49,18 +54,18 @@ func _ready():
 	
 	var num_players = players.size() 
 	
-	if(num_players == 2):
-		bomb_timers.push(20)
-		game_duration = 20
-	elif(num_players == 3):
-		bomb_timers.push(30)
-		bomb_timers.push(15)
-		game_duration = 30
-	else:
-		bomb_timers.push(30)
-		bomb_timers.push(20)
-		bomb_timers.push(10)
-		game_duration = 30
+#	if(num_players == 2):
+#		bomb_timers.push(20)
+#		game_duration = 20
+#	elif(num_players == 3):
+#		bomb_timers.push(30)
+#		bomb_timers.push(15)
+#		game_duration = 30
+#	else:
+#		bomb_timers.push(30)
+#		bomb_timers.push(20)
+#		bomb_timers.push(10)
+#		game_duration = 30
 
 func on_stomped(who: int, enemy : int): # depending on the level it works in one way or another (exchanging crown for example)
 	if !players[enemy].get("has_crown"):
@@ -124,29 +129,6 @@ func _on_timer_timeout():
 		end_game()
 		
 
-func smash_player(player : int):
-	players[player].aplastar()
-	var clasificated = null
-	if last_position == 4:
-		clasificated = "4th"
-	elif last_position == 3:
-		clasificated = "3rd"
-	elif last_position == 2:
-		clasificated = "2nd"
-	else: clasificated = "1st"
-
-	player_positions[player].set_points_string(clasificated)
-	last_position -= 1
-	
-	if last_position == 1:
-		var players_alive = get_tree().get_nodes_in_group("players")
-		for p in players_alive:
-			if p.get("controller") != player:
-				winnerId = p.get("controller")
-				winnerName = p.get("character")
-		player_positions[winnerId].set_points_string("1st")
-		endGame = true
-		end_game()
 
 
 func _on_audio_finished():
@@ -155,3 +137,12 @@ func _on_audio_finished():
 
 func _on_round_timer_end():
 	SceneTransition.change_scene("res://Levels/post_round.tscn")
+
+
+func _on_grace_timer_tick():
+	currentGracePeriod -= 1
+	gracePeriodText.set("text", "NEXT BOMB IN %s S" % currentGracePeriod)
+	if currentGracePeriod == 0:
+		gracePeriodText.visible = false
+		gracePeriodTimer.stop()
+		# spawn bomb
