@@ -2,16 +2,12 @@ extends Node2D
 
 var player_clasification_scene = preload("res://UI/player_clasification.tscn")
 
-var players = {
-	0: {0: "froggy", 1: 3},
-	1: {0: "wilding", 1: 5},
-	2: {0: "very_real", 1: 4},
-	3: {0: "pink_guy", 1: 2},
-}
-var player_positions = {}
+var players = {}
 
 
 func _ready():
+	# get the players ranking by points
+	players = GameStorage.get_player_ranking()
 	var i = 0
 	for p in players:
 		var pl_c = player_clasification_scene.instantiate()

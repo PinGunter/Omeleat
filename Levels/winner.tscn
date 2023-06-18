@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://ulteqhqgvf8g"]
+[gd_scene load_steps=4 format=3 uid="uid://ulteqhqgvf8g"]
 
+[ext_resource type="Script" path="res://Levels/winner.gd" id="1_h0iwx"]
 [ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="1_hraa7"]
+[ext_resource type="PackedScene" uid="uid://cy4qwja6qj3jp" path="res://Global/game_storage.tscn" id="3_xklyl"]
 
 [node name="winner" type="Node2D"]
+script = ExtResource("1_h0iwx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1321.0
 offset_bottom = 752.0
 texture = ExtResource("1_hraa7")
 stretch_mode = 1
+
+[node name="GameStorage" parent="." instance=ExtResource("3_xklyl")]
