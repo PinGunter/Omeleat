@@ -1,16 +1,139 @@
-[gd_scene load_steps=4 format=3 uid="uid://ulteqhqgvf8g"]
+[gd_scene load_steps=11 format=3 uid="uid://ulteqhqgvf8g"]
 
 [ext_resource type="Script" path="res://Levels/winner.gd" id="1_h0iwx"]
-[ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="1_hraa7"]
-[ext_resource type="PackedScene" uid="uid://cy4qwja6qj3jp" path="res://Global/game_storage.tscn" id="3_xklyl"]
+[ext_resource type="Texture2D" uid="uid://ds4tgklgay0or" path="res://Art/Background/Pink.png" id="2_obwxr"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="3_yib4k"]
+[ext_resource type="AudioStream" uid="uid://du7uja6c6ygjk" path="res://Art/Music/Louie_Zong_-_a_questionable_minigame.mp3" id="4_ald7i"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dxq7q"]
+emission_shape = 2
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0, 1, 0.984314, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_krw6e"]
+emission_shape = 2
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0, 1, 0.984314, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6p5c8"]
+emission_shape = 2
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0, 1, 0.984314, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="Animation" id="Animation_m7ggp"]
+resource_name = "new_animation"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-182, -190), Vector2(-5058, -3212)]
+}
+
+[sub_resource type="Animation" id="Animation_xut12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jaxh5"]
+_data = {
+"RESET": SubResource("Animation_xut12"),
+"new_animation": SubResource("Animation_m7ggp")
+}
 
 [node name="winner" type="Node2D"]
 script = ExtResource("1_h0iwx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1321.0
-offset_bottom = 752.0
-texture = ExtResource("1_hraa7")
+offset_right = 6403.0
+offset_bottom = 4038.0
+texture = ExtResource("2_obwxr")
 stretch_mode = 1
 
-[node name="GameStorage" parent="." instance=ExtResource("3_xklyl")]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_top = 123.0
+offset_right = 1277.0
+offset_bottom = 237.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_yib4k")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]WINNER[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(691, 412)
+emitting = false
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_dxq7q")
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(607, 412)
+emitting = false
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_krw6e")
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(522, 412)
+emitting = false
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_6p5c8")
+randomness = 1.0
+
+[node name="winnerMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ald7i")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_jaxh5")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

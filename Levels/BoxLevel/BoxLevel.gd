@@ -117,7 +117,7 @@ func end_game():
 	$roundEndTimer.start()
 
 func _on_round_end_timer_timeout():
-	SceneTransition.change_scene("res://Levels/character_selection.tscn")
+	SceneTransition.change_scene("res://Levels/post_round.tscn")
 
 
 func _on_bg_music_finished():
