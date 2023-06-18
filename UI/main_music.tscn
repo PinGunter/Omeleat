@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://nv1yv3rmvwbm"]
+
+[ext_resource type="Script" path="res://UI/main_music.gd" id="1_g388j"]
+[ext_resource type="AudioStream" uid="uid://c1xq4haqu7ram" path="res://Art/Music/Louie Zong - turnstile hop.mp3" id="2_786eb"]
+
+[node name="MainMusic" type="Node"]
+script = ExtResource("1_g388j")
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_786eb")
+autoplay = true

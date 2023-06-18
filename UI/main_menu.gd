@@ -11,9 +11,7 @@ extends Control
 
 func _ready():
 	btnEmpezar.grab_focus()
-
-
-
+	MainMusic.play()
 
 func _process(delta):
 	ptrStart.visible = false
@@ -38,3 +36,7 @@ func _on_opciones_pressed():
 
 func _on_salir_pressed():
 	get_tree().quit()
+
+
+func _on_bg_music_finished():
+	$bgMusic.play()

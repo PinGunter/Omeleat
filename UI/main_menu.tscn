@@ -100,6 +100,21 @@ _data = {
 "moving": SubResource("Animation_x1w0k")
 }
 
+[sub_resource type="Animation" id="Animation_oschm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-118, -1659)]
+}
+
 [sub_resource type="Animation" id="Animation_ekyay"]
 resource_name = "new_animation"
 length = 60.0
@@ -115,21 +130,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-118, -1659), Vector2(-2441, -25.0001)]
-}
-
-[sub_resource type="Animation" id="Animation_oschm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-118, -1659)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_83kqh"]
@@ -158,36 +158,36 @@ texture = ExtResource("2_whvy8")
 stretch_mode = 1
 
 [node name="Tortilla2" type="Sprite2D" parent="TextureRect"]
-position = Vector2(1517.71, 554.341)
+position = Vector2(2011.09, 1050.89)
 rotation = 1.1973
 scale = Vector2(0.545, 0.475)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla3" type="Sprite2D" parent="TextureRect"]
-position = Vector2(2117, 273)
+position = Vector2(2162.08, 1101.87)
 scale = Vector2(0.545, 0.475)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla4" type="Sprite2D" parent="TextureRect"]
-position = Vector2(1950, 547)
+position = Vector2(2101.87, 1293.3)
 rotation = -3.2306
 scale = Vector2(0.545, 0.475)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla5" type="Sprite2D" parent="TextureRect"]
-position = Vector2(1292.15, 741.653)
+position = Vector2(1369.74, 743.556)
 rotation = -2.51327
 scale = Vector2(0.545, 0.475)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla6" type="Sprite2D" parent="TextureRect"]
-position = Vector2(1925, 148)
+position = Vector2(2133.04, 940.941)
 rotation = 3.35103
 scale = Vector2(0.545, 0.475)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla7" type="Sprite2D" parent="TextureRect"]
-position = Vector2(1042.66, 1016.13)
+position = Vector2(1228.9, 897.491)
 scale = Vector2(0.661785, 0.754043)
 texture = ExtResource("3_lnhnm")
 
@@ -226,13 +226,13 @@ scale = Vector2(0.488229, 0.439902)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla14" type="Sprite2D" parent="TextureRect"]
-position = Vector2(671.907, 1512.96)
+position = Vector2(1884.96, 1176.9)
 rotation = -0.598648
 scale = Vector2(0.312985, 0.302067)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla15" type="Sprite2D" parent="TextureRect"]
-position = Vector2(141.233, 1493.99)
+position = Vector2(273.435, 1218.72)
 scale = Vector2(0.294299, 0.281889)
 texture = ExtResource("3_lnhnm")
 
@@ -242,7 +242,7 @@ scale = Vector2(0.344128, 0.257677)
 texture = ExtResource("3_lnhnm")
 
 [node name="Tortilla17" type="Sprite2D" parent="TextureRect"]
-position = Vector2(1492.99, 1078.28)
+position = Vector2(1363.44, 1138.81)
 scale = Vector2(0.545, 0.475)
 texture = ExtResource("3_lnhnm")
 
@@ -264,6 +264,18 @@ texture = ExtResource("3_lnhnm")
 [node name="Tortilla21" type="Sprite2D" parent="TextureRect"]
 position = Vector2(924.32, 1487.48)
 scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla22" type="Sprite2D" parent="TextureRect"]
+position = Vector2(3270.77, 402.675)
+scale = Vector2(0.297025, 0.225625)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla23" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1835.84, 1073.68)
+rotation = -0.166632
+scale = Vector2(0.296743, 0.225907)
+skew = -0.0244148
 texture = ExtResource("3_lnhnm")
 
 [node name="div" type="VBoxContainer" parent="."]

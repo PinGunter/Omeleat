@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8gw0c25fmbi1"
+path="res://.godot/imported/Louie Zong - end credits.mp3-e87703a1a4defc24c71eca44b0f7ae45.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/Louie Zong - end credits.mp3"
+dest_files=["res://.godot/imported/Louie Zong - end credits.mp3-e87703a1a4defc24c71eca44b0f7ae45.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

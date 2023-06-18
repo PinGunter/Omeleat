@@ -26,6 +26,7 @@ var player_chosen = {
 
 
 func _ready():
+	MainMusic.stop()
 	for n in Input.get_connected_joypads():
 		if n < 4:
 			player_select.emit(n, no_character)

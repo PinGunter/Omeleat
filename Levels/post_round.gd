@@ -7,14 +7,18 @@ var initial_draw_position : int = 0
 
 
 func _ready():
+	if ConfigLoader.get_config()["volume"] == 0:
+		$music.volume_db = -80
+	else:
+		$music.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
 	# get the players ranking by points
 	players = GameStorage.get_player_ranking()
 	
 	var num_players = players.size()
 	if(num_players == 2):
-		initial_draw_position = 300
+		initial_draw_position = 400
 	elif(num_players == 3):
-		initial_draw_position = 200
+		initial_draw_position = 250
 	else: initial_draw_position = 100
 	
 	var i = 0

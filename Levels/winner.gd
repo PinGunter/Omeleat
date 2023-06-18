@@ -1,13 +1,18 @@
 extends Node2D
 
 var player_clasification_scene = preload("res://UI/player_clasification.tscn")
-@onready var game_storage = $GameStorage
+
 
 var players = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	players = game_storage.get_player_ranking()
+	if ConfigLoader.get_config()["volume"] == 0:
+		$winnerMusic.volume_db = -80
+	else:
+		$winnerMusic.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
+		
+	players = GameStorage.get_player_ranking()
 	var winner = players[0]
 	var pl_c = player_clasification_scene.instantiate()
 	pl_c.select_character(winner[0])
@@ -19,6 +24,5 @@ func _ready():
 	$winnerMusic.play()
 
 
-
 func _on_timer_timeout():
-	SceneTransition.change_scene("res://Levels/main_menu.tscn")
+	SceneTransition.change_scene("res://UI/main_menu.tscn")

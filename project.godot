@@ -21,6 +21,7 @@ ConfigLoader="*res://Settings/config_loader.gd"
 SceneTransition="*res://UI/scene_transition.tscn"
 GameStorage="*res://Global/game_storage.gd"
 PlayerManager="*res://Characters/player_manager.gd"
+MainMusic="*res://UI/main_music.tscn"
 
 [display]
 

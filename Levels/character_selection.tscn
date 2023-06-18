@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://c03gc63tnlnvy"]
 
 [ext_resource type="Script" path="res://Levels/character_selection.gd" id="1_7wty3"]
-[ext_resource type="AudioStream" uid="uid://b142pqrdsi3q5" path="res://Art/Music/Louie Zong - tutorial time!.mp3" id="2_njuve"]
+[ext_resource type="AudioStream" uid="uid://b8gw0c25fmbi1" path="res://Art/Music/Louie Zong - end credits.mp3" id="2_i48ca"]
 [ext_resource type="Texture2D" uid="uid://ci8yijl3y7e57" path="res://Art/Background/Gray.png" id="3_iymno"]
 [ext_resource type="Texture2D" uid="uid://bymel3l4tnw0l" path="res://Art/ui/downard_banner_red.png" id="4_6y6kk"]
 [ext_resource type="Texture2D" uid="uid://bppohejxi2yda" path="res://Art/ui/downard_banner_orange.png" id="5_gvjf2"]
@@ -65,7 +65,7 @@ script = ExtResource("1_7wty3")
 metadata/_edit_lock_ = true
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_njuve")
+stream = ExtResource("2_i48ca")
 autoplay = true
 
 [node name="fondo" type="TextureRect" parent="."]
