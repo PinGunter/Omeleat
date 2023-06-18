@@ -208,4 +208,7 @@ func receive_bomb():
 func lose_bomb():
 	has_bomb = false
 	bomb.visible = false
+
+func am_i_going_to_explode():
+	return has_bomb
 	

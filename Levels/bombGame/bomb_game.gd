@@ -20,13 +20,14 @@ var positions = {
 
 var slowness = 50
 var players = {}
-var points = {0: 0, 1: 0, 2: 0, 3:0}
-var max_points = 0
 var text_color = "#000"
 var player_points_scene = preload("res://UI/player_points.tscn")
 var player_points = {}
 var bomb_timers = {}
+var player_positions = {}
 var last_position = 0
+var winnerName = null
+var winnerId = null
 
 func _ready():
 	if ConfigLoader.get_config()["volume"] == 0:
@@ -44,7 +45,7 @@ func _ready():
 		pl_p.select_character(players[p].get("character"))
 		pl_p.set("position", Vector2(280,150+i*20))
 		add_child(pl_p)
-		player_points[p] = pl_p
+		player_positions[p] = pl_p
 		i += 1
 	
 	var num_players = players.size() 
@@ -63,9 +64,9 @@ func _ready():
 		game_duration = 30
 
 func on_stomped(who: int, enemy : int): # depending on the level it works in one way or another (exchanging crown for example)
-	if !players[enemy].get("has_crown"):
-		players[enemy].receive_crown()
-		players[who].lose_crown()
+	if !players[enemy].get("has_bomb"):
+		players[enemy].receive_bomb()
+		players[who].lose_bomb()
 		screen_shaker.shake()
 		$pickup.play()
 		if slowness_mode:
@@ -83,37 +84,18 @@ func _on_tortilla_entered(body):
 		$Tortilla1.queue_free()
 
 func end_game():
-	var winners = []
-	for p in players:
-		if points[p] == max_points:
-			winners.push_back(p)
-	timer.stop()
-	round_timer_text.set("text", "")
-	if winners.size() == 1:
-		winner_banner.set_winner(GameStorage.get_players()[winners[0]][0])
-		GameStorage.update_points(winners[0],GameStorage.get_player_points(winners[0])+1)
-		end_timer.start()
+	winner_banner.z_index = 999
+	winner_banner.set_winner(winnerName)
+	GameStorage.update_points(winnerId,GameStorage.get_player_points(winnerId)+1)
+	end_timer.start()
 		
 
-func update_winner():
-	for p in players:
-		if points[p] == max_points:
-			player_points[p].set_winner(true)
-		else:
-			player_points[p].set_winner(false)
 		
 
 func _on_timer_timeout():
 	game_duration -=1
 	round_timer_text.set("text", "[center][color="+text_color+"]"+str(game_duration)+"[/color][/center]")
-	
-	for i in players:
-		if players[i].has_object():
-			points[i] += 1
-			if points[i] >= max_points:
-				max_points = points[i]
-				update_winner()
-			player_points[i].set_points(points[i])
+
 			
 	if game_duration <= 11:
 		text_color = "#F00"
@@ -124,8 +106,8 @@ func _on_timer_timeout():
 		end_game()
 		
 
-func smash_player(player : int):
-	players[player].aplastar()
+func explode_player(player : int):
+	players[player].explode()
 	var clasificated = null
 	if last_position == 4:
 		clasificated = "4th"
@@ -145,7 +127,6 @@ func smash_player(player : int):
 				winnerId = p.get("controller")
 				winnerName = p.get("character")
 		player_positions[winnerId].set_points_string("1st")
-		endGame = true
 		end_game()
 
 
