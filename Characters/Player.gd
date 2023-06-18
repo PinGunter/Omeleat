@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var controller : int
 @export var character : String
 @export var has_crown: bool = false
+@export var has_bomb : bool = false
 @export var stomp_needs_press : bool = true
 @export_range(0,200,10) var slowness : int = 0
 signal stomped(me: int , enemy: int)
@@ -20,6 +21,7 @@ const MAX_WALL_JUMPS : int = 3
 @onready var down_rays : Array = [$DownRay,$DownRay2,$DownRay3]
 @onready var stun_timer : Timer = $StunTimer
 @onready var crown = $Tortilla1
+@onready var bomb = $Bomba
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -151,6 +153,9 @@ func aplastar():
 	crashed = true
 	queue_free()
 
+func explode():
+	queue_free()
+
 
 func nextToWall():
 	return nextToRightWall() or nextToLeftWall()
@@ -195,3 +200,12 @@ func lose_crown():
 	
 func has_object():
 	return has_crown
+	
+func receive_bomb():
+	has_bomb = true
+	bomb.visible = true
+	
+func lose_bomb():
+	has_bomb = false
+	bomb.visible = false
+	

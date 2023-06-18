@@ -1,6 +1,5 @@
 extends Node2D
-
-@export var game_duration : int = 60;
+@export var game_duration : int = 0;
 @export var slowness_mode : bool = false
 @export var stomping_needs_press : bool = true
 
@@ -19,7 +18,6 @@ var positions = {
 @onready var winner_banner = $WinnerBanner
 @onready var end_timer = $roundEndTimer
 
-var has_drawn = false
 var slowness = 50
 var players = {}
 var points = {0: 0, 1: 0, 2: 0, 3:0}
@@ -27,6 +25,8 @@ var max_points = 0
 var text_color = "#000"
 var player_points_scene = preload("res://UI/player_points.tscn")
 var player_points = {}
+var bomb_timers = {}
+var last_position = 0
 
 func _ready():
 	if ConfigLoader.get_config()["volume"] == 0:
@@ -46,13 +46,26 @@ func _ready():
 		add_child(pl_p)
 		player_points[p] = pl_p
 		i += 1
-		
 	
+	var num_players = players.size() 
+	
+	if(num_players == 2):
+		bomb_timers.push(20)
+		game_duration = 20
+	elif(num_players == 3):
+		bomb_timers.push(30)
+		bomb_timers.push(15)
+		game_duration = 30
+	else:
+		bomb_timers.push(30)
+		bomb_timers.push(20)
+		bomb_timers.push(10)
+		game_duration = 30
 
 func on_stomped(who: int, enemy : int): # depending on the level it works in one way or another (exchanging crown for example)
-	if players[enemy].get("has_crown"):
-		players[enemy].lose_bomb()
-		players[who].receive_bomb()
+	if !players[enemy].get("has_crown"):
+		players[enemy].receive_crown()
+		players[who].lose_crown()
 		screen_shaker.shake()
 		$pickup.play()
 		if slowness_mode:
@@ -80,11 +93,6 @@ func end_game():
 		winner_banner.set_winner(GameStorage.get_players()[winners[0]][0])
 		GameStorage.update_points(winners[0],GameStorage.get_player_points(winners[0])+1)
 		end_timer.start()
-	else: # draw
-		has_drawn = true
-		end_timer.start()
-		GameStorage.set_drawers(winners)
-		animation_player.play("draw_banner")
 		
 
 func update_winner():
@@ -114,6 +122,31 @@ func _on_timer_timeout():
 	if game_duration <= 0:
 		animation_player.stop()
 		end_game()
+		
+
+func smash_player(player : int):
+	players[player].aplastar()
+	var clasificated = null
+	if last_position == 4:
+		clasificated = "4th"
+	elif last_position == 3:
+		clasificated = "3rd"
+	elif last_position == 2:
+		clasificated = "2nd"
+	else: clasificated = "1st"
+
+	player_positions[player].set_points_string(clasificated)
+	last_position -= 1
+	
+	if last_position == 1:
+		var players_alive = get_tree().get_nodes_in_group("players")
+		for p in players_alive:
+			if p.get("controller") != player:
+				winnerId = p.get("controller")
+				winnerName = p.get("character")
+		player_positions[winnerId].set_points_string("1st")
+		endGame = true
+		end_game()
 
 
 func _on_audio_finished():
@@ -121,7 +154,4 @@ func _on_audio_finished():
 
 
 func _on_round_timer_end():
-	if has_drawn:
-		SceneTransition.change_scene("res://Levels/kingsGame/draw_mode.tscn")
-	else:
-		SceneTransition.change_scene("res://Levels/post_round.tscn")
+	SceneTransition.change_scene("res://Levels/post_round.tscn")
