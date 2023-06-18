@@ -5,6 +5,21 @@
 [ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="3_25wfi"]
 [ext_resource type="AudioStream" uid="uid://b7nuabgls76n1" path="res://Art/Music/Louie Zong - sidewinder sands.mp3" id="4_l201c"]
 
+[sub_resource type="Animation" id="Animation_k3nmd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_eq6ek"]
 resource_name = "transition"
 length = 60.0
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-2208, -1720)]
 }
 
-[sub_resource type="Animation" id="Animation_k3nmd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lhxy6"]
 _data = {
 "RESET": SubResource("Animation_k3nmd"),
@@ -46,12 +46,10 @@ _data = {
 script = ExtResource("1_fdymx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 8.0
-offset_right = 3496.0
+offset_right = 3488.0
 offset_bottom = 2440.0
 texture = ExtResource("1_q5sw0")
 stretch_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "transition"

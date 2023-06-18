@@ -54,6 +54,9 @@ func stomped(who: int, enemy : int): # depending on the level it works in one wa
 		players[who].receive_crown()
 		screen_shaker.shake()
 		$pickup.play()
+		if slowness_mode:
+			players[enemy].set("slowness", 0)
+			players[who].set("slowness", slowness)
 	players[enemy].get_stomped()
 
 
@@ -61,6 +64,8 @@ func _on_tortilla_entered(body):
 	if body.is_in_group("players"):
 		$pickup.play()
 		body.receive_crown()
+		if slowness_mode:
+			body.set("slowness", slowness)
 		$Tortilla1.queue_free()
 
 func end_game(winner : int):
@@ -84,16 +89,17 @@ func update_winner():
 func _on_timer_timeout():
 	game_duration -=1
 	
-	for i in players:
-		if players[i].has_object():
-			points[i] += 1
-			if points[i] >= current_max:
-				current_max = points[i]
-				update_winner()
-			player_points[i].set_points(points[i])
-			if points[i] == max_points:
-				animation_player.stop()
-				end_game(i)
+	if not game_finished:
+		for i in players:
+			if players[i].has_object():
+				points[i] += 1
+				if points[i] >= current_max:
+					current_max = points[i]
+					update_winner()
+				player_points[i].set_points(points[i])
+				if points[i] == max_points:
+					animation_player.stop()
+					end_game(i)
 
 
 func _on_audio_finished():
@@ -102,4 +108,4 @@ func _on_audio_finished():
 
 func _on_round_timer_end():
 	GameStorage.set_drawers([])
-	SceneTransition.change_scene("res://Levels/character_selection.tscn")
+	SceneTransition.change_scene("res://Levels/post_round.tscn")

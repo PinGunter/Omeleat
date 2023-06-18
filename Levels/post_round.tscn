@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b234a7hmebsdu"]
+[gd_scene load_steps=8 format=3 uid="uid://b234a7hmebsdu"]
 
 [ext_resource type="Script" path="res://Levels/post_round.gd" id="1_o1rfc"]
 [ext_resource type="Texture2D" uid="uid://dr5aldu7k530v" path="res://Art/Background/Purple.png" id="2_5k5hq"]
 [ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="3_mdnpc"]
+[ext_resource type="AudioStream" uid="uid://dvgr7l0ffjcna" path="res://Art/Music/Louie Zong - seaside temple (mp3cut.net).mp3" id="4_eiyx6"]
 
 [sub_resource type="Animation" id="Animation_875ra"]
 length = 0.001
@@ -58,7 +59,7 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 6.0
 autostart = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -72,5 +73,9 @@ theme_override_font_sizes/normal_font_size = 100
 text = "RANKING"
 fit_content = true
 scroll_active = false
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_eiyx6")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

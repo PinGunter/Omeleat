@@ -124,4 +124,4 @@ func _on_round_timer_end():
 	if has_drawn:
 		SceneTransition.change_scene("res://Levels/kingsGame/draw_mode.tscn")
 	else:
-		SceneTransition.change_scene("res://Levels/character_selection.tscn")
+		SceneTransition.change_scene("res://Levels/post_round.tscn")

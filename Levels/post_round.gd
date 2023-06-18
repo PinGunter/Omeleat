@@ -11,15 +11,15 @@ func _ready():
 	var i = 0
 	for p in players:
 		var pl_c = player_clasification_scene.instantiate()
-		pl_c.select_character(players[p][0])
-		pl_c.set_points(players[p][1])
+		pl_c.select_character(p[0])
+		pl_c.set_points(p[1])
 		pl_c.set("position", Vector2(100 + i*300,220))
 		add_child(pl_c)
 		i += 1
 
 func _on_timer_timeout():
 	if GameStorage.next_round():
-		SceneTransition.change_scene("res://Levels/character_selection.tscn")
+		SceneTransition.change_scene("res://Levels/pre_game.tscn")
 	else:
-		SceneTransition.change_scene("res://Levels/character_selection.tscn")
+		SceneTransition.change_scene("res://Levels/winner.tscn")
 	

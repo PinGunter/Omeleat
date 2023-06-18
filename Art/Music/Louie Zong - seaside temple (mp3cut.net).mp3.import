@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvgr7l0ffjcna"
+path="res://.godot/imported/Louie Zong - seaside temple (mp3cut.net).mp3-ecb8972f13b826c234d96ba69ca298b5.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/Louie Zong - seaside temple (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/Louie Zong - seaside temple (mp3cut.net).mp3-ecb8972f13b826c234d96ba69ca298b5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

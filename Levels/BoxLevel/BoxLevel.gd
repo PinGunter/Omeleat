@@ -77,13 +77,14 @@ func spawn_box():
 		var column = randi_range(0, NUM_COLUMNS - 1)
 		while((boxesPerColumn[column] > minNumBoxesInColum + 2) or (boxesPerColumn[column] >= MAX_BOXES_PER_COLUMN)):
 			column = randi_range(0, NUM_COLUMNS - 1)
-		var box : Node2D = box_scene.instantiate()
-		box.global_position = Vector2(column * 50 + 490, -100)
-		box.set_gravity(gravityBox)
-		gravityBox += INCREMENTAL_GRAVITY
-		box.smash.connect(smash_player)
-		add_child(box)
-		boxesPerColumn[column] += 1
+		if box_scene.can_instantiate():
+			var box : Node2D = box_scene.instantiate()
+			box.global_position = Vector2(column * 50 + 490, -100)
+			box.set_gravity(gravityBox)
+			gravityBox += INCREMENTAL_GRAVITY
+			box.smash.connect(smash_player)
+			add_child(box)
+			boxesPerColumn[column] += 1
 		
 func smash_player(player : int):
 	players[player].aplastar()
@@ -117,7 +118,7 @@ func end_game():
 	$roundEndTimer.start()
 
 func _on_round_end_timer_timeout():
-	SceneTransition.change_scene("res://Levels/character_selection.tscn")
+	SceneTransition.change_scene("res://Levels/post_round.tscn")
 
 
 func _on_bg_music_finished():

@@ -38,9 +38,13 @@ func get_players() -> Dictionary:
 	
 func get_active_players() -> Dictionary:
 	var active = {}
-	for p in players:
-		if players[p][0] != "no_character":
-			active[p] = players[p]
+	if drawers.size() > 0:
+		for d in drawers:
+			active[d] = players[d]
+	else:
+		for p in players:
+			if players[p][0] != "no_character":
+				active[p] = players[p]
 	return active
 		
 
@@ -65,9 +69,20 @@ func get_player_points(player: int) -> int:
 
 func next_round() -> bool:
 	current_round += 1
-	if current_round > total_rounds:
+	
+	var ranking = get_player_ranking()
+	var first = ranking[0][1]
+	
+	drawers = [find_player_id(ranking[0][0])]
+	for p in range(1,ranking.size()):
+		if ranking[p][1] == first:
+			drawers.push_back(find_player_id(ranking[p][0]))
+	drawers.filter(func (n): return n != -1)
+	print(drawers)
+	if current_round >= total_rounds and drawers.size() == 1:
 		return false
 	else:
+		drawers.clear()
 		return true
 
 func pick_next_game() -> Array: # 0: name, 1: path
@@ -83,3 +98,8 @@ func pick_next_game() -> Array: # 0: name, 1: path
 	unplayed_levels.remove_at(picked)
 	return [level_name, current_level]
 	
+func find_player_id(character : String) -> int:
+	for p in players:
+		if players[p][0] == character:
+			return p
+	return -1
