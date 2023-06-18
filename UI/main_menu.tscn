@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5j4iogmongui"]
+[gd_scene load_steps=15 format=3 uid="uid://c5j4iogmongui"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_6g7qq"]
 [ext_resource type="Texture2D" uid="uid://cj04h2tkwcmdn" path="res://Art/Background/Yellow.png" id="2_whvy8"]
-[ext_resource type="Texture2D" uid="uid://8ocpqfska4si" path="res://Art/ui/title.png" id="3_twn8n"]
+[ext_resource type="Texture2D" uid="uid://eisu1iuslh5i" path="res://Art/Items/tortilla/tortilla2.png" id="3_lnhnm"]
 [ext_resource type="Texture2D" uid="uid://h430j0rdylpb" path="res://Art/ui/pointer.png" id="4_001ye"]
+[ext_resource type="FontFile" uid="uid://wb0p4l64tomf" path="res://Art/font/pressStart.ttf" id="5_finsc"]
 
 [sub_resource type="Theme" id="Theme_v5gtf"]
 default_font_size = 45
@@ -99,6 +100,44 @@ _data = {
 "moving": SubResource("Animation_x1w0k")
 }
 
+[sub_resource type="Animation" id="Animation_ekyay"]
+resource_name = "new_animation"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-118, -1659), Vector2(-2441, -25.0001)]
+}
+
+[sub_resource type="Animation" id="Animation_oschm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-118, -1659)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83kqh"]
+_data = {
+"RESET": SubResource("Animation_oschm"),
+"new_animation": SubResource("Animation_ekyay")
+}
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -110,18 +149,122 @@ script = ExtResource("1_6g7qq")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -491.0
-offset_top = -299.0
-offset_right = 1884.0
-offset_bottom = 1094.0
+offset_left = -118.0
+offset_top = -1659.0
+offset_right = 2221.0
+offset_bottom = 423.0
+scale = Vector2(1.6055, 1.23901)
 texture = ExtResource("2_whvy8")
 stretch_mode = 1
-metadata/_edit_lock_ = true
 
-[node name="Title" type="Sprite2D" parent="."]
-position = Vector2(390, 338)
-scale = Vector2(5.78906, 4.79688)
-texture = ExtResource("3_twn8n")
+[node name="Tortilla2" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1517.71, 554.341)
+rotation = 1.1973
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla3" type="Sprite2D" parent="TextureRect"]
+position = Vector2(2117, 273)
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla4" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1950, 547)
+rotation = -3.2306
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla5" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1292.15, 741.653)
+rotation = -2.51327
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla6" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1925, 148)
+rotation = 3.35103
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla7" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1042.66, 1016.13)
+scale = Vector2(0.661785, 0.754043)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla8" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1496.73, 958.023)
+rotation = -1.1973
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla9" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1189.03, 1047.61)
+scale = Vector2(0.596385, 0.604729)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla10" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1652.44, 733.65)
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla11" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1038.48, 794.315)
+rotation = 0.71733
+scale = Vector2(0.477369, 0.465967)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla12" type="Sprite2D" parent="TextureRect"]
+position = Vector2(911.084, 1175.19)
+rotation = 0.598648
+scale = Vector2(0.412642, 0.411025)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla13" type="Sprite2D" parent="TextureRect"]
+position = Vector2(613.72, 1101.68)
+rotation = -1.26885
+scale = Vector2(0.488229, 0.439902)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla14" type="Sprite2D" parent="TextureRect"]
+position = Vector2(671.907, 1512.96)
+rotation = -0.598648
+scale = Vector2(0.312985, 0.302067)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla15" type="Sprite2D" parent="TextureRect"]
+position = Vector2(141.233, 1493.99)
+scale = Vector2(0.294299, 0.281889)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla16" type="Sprite2D" parent="TextureRect"]
+position = Vector2(704.918, 1301.91)
+scale = Vector2(0.344128, 0.257677)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla17" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1492.99, 1078.28)
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla18" type="Sprite2D" parent="TextureRect"]
+position = Vector2(485.206, 1271.98)
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla19" type="Sprite2D" parent="TextureRect"]
+position = Vector2(1040.79, 1293.78)
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla20" type="Sprite2D" parent="TextureRect"]
+position = Vector2(777.948, 1069.4)
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
+
+[node name="Tortilla21" type="Sprite2D" parent="TextureRect"]
+position = Vector2(924.32, 1487.48)
+scale = Vector2(0.545, 0.475)
+texture = ExtResource("3_lnhnm")
 
 [node name="div" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -173,6 +316,26 @@ texture = ExtResource("4_001ye")
 autoplay = "moving"
 libraries = {
 "": SubResource("AnimationLibrary_da5th")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 99.0
+offset_right = 943.0
+offset_bottom = 258.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_finsc")
+theme_override_font_sizes/normal_font_size = 100
+text = "OMELEAT!"
+fit_content = true
+scroll_active = false
+scroll_following = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_83kqh")
 }
 
 [connection signal="pressed" from="div/Empezar" to="." method="_on_empezar_pressed"]
