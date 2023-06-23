@@ -14,3 +14,9 @@ func play():
 	
 func stop():
 	$bgMusic.stop()
+
+func change_volume(v: float):
+	if v == 0:
+		$bgMusic.volume_db = -80
+	else:
+		$bgMusic.volume_db = (1 - v) * -40

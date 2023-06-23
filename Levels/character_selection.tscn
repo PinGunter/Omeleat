@@ -193,14 +193,15 @@ theme_override_font_sizes/normal_font_size = 40
 text = "CHOOSE YOUR CHARACTER"
 
 [node name="rounds" type="RichTextLabel" parent="text"]
-offset_left = 384.0
-offset_top = 280.0
-offset_right = 920.0
-offset_bottom = 336.0
+offset_left = 368.0
+offset_top = 288.0
+offset_right = 904.0
+offset_bottom = 344.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("14_rqhsx")
 theme_override_font_sizes/normal_font_size = 25
-text = "HOW MUCH DO YOU LIKE TORTILLA DE PATATAS?"
+bbcode_enabled = true
+text = "[center]BEST OF[/center]"
 
 [node name="roundSelection" type="Node" parent="."]
 

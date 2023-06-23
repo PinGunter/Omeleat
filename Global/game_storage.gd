@@ -24,6 +24,20 @@ var players = {
 
 var drawers = [] # ids of the players that have drawn in a game
 
+func reset():
+	players = {
+		0: {0: "no_character", 1: 0},
+		1: {0: "no_character", 1: 0},
+		2: {0: "no_character", 1: 0},
+		3: {0: "no_character", 1: 0},
+	}
+	drawers = []
+	unplayed_levels = levels.duplicate()
+	played_levels = []
+	total_rounds = 0
+	current_round = 0
+	current_level = ""
+
 func get_drawers() -> Array:
 	return drawers
 
@@ -79,7 +93,9 @@ func next_round() -> bool:
 			drawers.push_back(find_player_id(ranking[p][0]))
 	drawers.filter(func (n): return n != -1)
 	print(drawers)
-	if current_round >= total_rounds and drawers.size() == 1:
+	
+	
+	if (first > (total_rounds / 2)) and drawers.size() == 1:
 		return false
 	else:
 		drawers.clear()

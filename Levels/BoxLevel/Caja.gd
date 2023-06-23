@@ -10,7 +10,11 @@ var onFloor : bool = false
 var animationPlayed : String = "Idle"
 signal smash(player : int) 
 
-
+func _ready():
+	if ConfigLoader.get_config()["volume"] == 0:
+		$smashBox.volume_db = -80
+	else:
+		$smashBox.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
 
 func _physics_process(delta):
 	velocity += gravity * delta

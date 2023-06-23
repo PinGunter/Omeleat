@@ -26,6 +26,7 @@ var player_chosen = {
 
 
 func _ready():
+	GameStorage.reset()
 	MainMusic.stop()
 	for n in Input.get_connected_joypads():
 		if n < 4:
@@ -85,6 +86,7 @@ func on_cursor_clicked(device, where):
 				f.select(device)
 				player_select.emit(device,where)
 				player_chosen[device] = where
+				update_global_selection()
 			elif f.get("player") == device:
 				f.deselect()
 				
@@ -110,19 +112,19 @@ func _on_button_action(what):
 		SceneTransition.change_scene("res://UI/main_menu.tscn")
 	elif what == "next":
 		update_global_selection()
-		if GameStorage.get_active_players().size() >= 1:
+		if GameStorage.get_active_players().size() > 1:
 			SceneTransition.change_scene("res://Levels/pre_game.tscn")
 	elif what == "removeRounds":
-		rounds = max(1,rounds-1)
+		rounds = max(1,rounds-2)
 		update_rounds_text(rounds)
 	elif what == "addRounds":
-		rounds = min(10,rounds+1)
+		rounds = min(7,rounds+2)
 		update_rounds_text(rounds)
 
 func update_rounds_text(r : int):
 	rounds_text.set("text", "[center]%s[/center]" % r)
 	GameStorage.set_total_rounds(r)
-	if r == 10:
+	if r == 7:
 		$roundSelection/rightButton.visible = false
 		$roundSelection/rightButton.force_exit() # no se si dejarlo o no :)
 	else:

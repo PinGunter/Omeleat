@@ -5,10 +5,10 @@ extends Node2D
 @export var stomping_needs_press : bool = true
 
 var positions = {
-	0: Vector2(300,300),
-	1: Vector2(500,300),
-	2: Vector2(700,300),
-	3: Vector2(900,300)
+	0: Vector2(370,315),
+	1: Vector2(540,475),
+	2: Vector2(745,470),
+	3: Vector2(915,310)
 }
 
 @onready var player_manager = $PlayerManager
@@ -30,8 +30,10 @@ var game_finished = false
 func _ready():
 	if ConfigLoader.get_config()["volume"] == 0:
 		$bgMusic.volume_db = -80
+		$pickup.volume_db = -80
 	else:
 		$bgMusic.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
+		$pickup.volume_db = (1 - ConfigLoader.get_config()["volume"]) * -40
 		
 	player_manager.set("needs_pressing", stomping_needs_press)
 	player_manager.instantiate_draw_players(positions)

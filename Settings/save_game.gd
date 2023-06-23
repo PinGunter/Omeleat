@@ -11,6 +11,7 @@ var config = {}
 var screen_shake_opts = ["Off", "Normal", "High"]
 var scr_shk_i = 0
 
+
 func _ready():
 	config = ConfigLoader.get_config()
 	volume.value = config["volume"]
@@ -23,6 +24,7 @@ func _ready():
 func _on_volume_value_changed(value):
 	config["volume"] =value
 	ConfigLoader.save_config()
+	MainMusic.change_volume(value)
 
 
 func _on_full_screen_pressed():

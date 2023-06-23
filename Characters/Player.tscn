@@ -1277,4 +1277,9 @@ position = Vector2(-4, -23)
 scale = Vector2(0.105625, 0.105625)
 texture = ExtResource("26_o47uk")
 
+[node name="Bomba" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2.38419e-07, -22)
+scale = Vector2(0.257813, 0.257813)
+
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
